@@ -247,7 +247,7 @@ function Index() {
       raf = 0;
       const vh = window.innerHeight;
       for (const el of els) {
-        const speed = Number(el.dataset.parallax ?? "0");
+        const speed = Number(el.dataset["parallax"] ?? "0");
         const r = el.getBoundingClientRect();
         if (r.bottom < -vh || r.top > vh * 2) continue;
         // -1 (below viewport) .. 1 (above viewport)
