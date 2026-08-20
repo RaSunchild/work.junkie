@@ -634,7 +634,7 @@ function Index() {
                   }`}
                 >
                   <div
-                    className={`flex w-full items-center justify-center overflow-hidden ${
+                    className={`flex w-full items-center justify-center overflow-hidden h-[clamp(360px,70svh,900px)] md:h-[clamp(520px,95svh,1400px)] ${
                       b.image ? "" : `${b.aspect ?? "aspect-square"} ${isDark ? "bg-foreground/15" : "bg-background/15"}`
                     }`}
                   >
@@ -642,7 +642,7 @@ function Index() {
                       <img
                         src={b.image}
                         alt={b.title}
-                        className="block w-full object-contain h-[clamp(300px,58svh,760px)] md:h-[clamp(460px,88svh,1200px)]"
+                        className="h-full w-full object-contain"
                       />
                     )}
                   </div>
@@ -654,7 +654,7 @@ function Index() {
                 data-parallax="-0.06"
                 style={{ willChange: "transform" }}
                 className={`order-2 flex flex-col justify-between ${
-                  b.noImage ? "" : "md:min-h-[clamp(460px,88svh,1200px)]"
+                  b.noImage ? "" : "md:min-h-[clamp(520px,95svh,1400px)]"
                 } ${imgFirst ? "md:order-2" : "md:order-1"}`}
               >
                 {b.kind === "poetry" ? (
