@@ -672,14 +672,14 @@ function Index() {
                           to="/writing/$slug"
                           params={{ slug: b.writingSlug }}
                           className="font-display font-medium leading-[1.02] tracking-tight whitespace-pre-line hover:opacity-70 transition-opacity animate-gentle-pulse"
-                          style={{ fontSize: "clamp(2.25rem, 7.5vw, 6rem)" }}
+                          style={{ fontSize: "clamp(2rem, 5.6vw, 4.5rem)" }}
                         >
                           <h2 className="contents">{b.title}</h2>
                         </Link>
                       ) : (
                         <h2
                           className="font-display font-medium leading-[1.02] tracking-tight whitespace-pre-line"
-                          style={{ fontSize: "clamp(2.25rem, 7.5vw, 6rem)" }}
+                          style={{ fontSize: "clamp(2rem, 5.6vw, 4.5rem)" }}
                         >
                           {b.title}
                         </h2>
@@ -713,7 +713,7 @@ function Index() {
                       </span>
                       <h2
                         className="mt-4 font-display font-medium leading-[1.02] tracking-tight whitespace-pre-line"
-                        style={{ fontSize: "clamp(2.25rem, 7.5vw, 6rem)" }}
+                        style={{ fontSize: "clamp(2rem, 5.6vw, 4.5rem)" }}
                       >
                         {b.title}
                       </h2>
