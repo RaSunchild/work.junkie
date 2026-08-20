@@ -22,7 +22,7 @@ export function SwipeBackIndicator() {
     const onStart = (e: TouchEvent) => {
       if (e.touches.length !== 1) return;
       const t = e.touches[0];
-      if (t.clientX > EDGE) return;
+      if (!t || t.clientX > EDGE) return;
       state.current = {
         startX: t.clientX,
         startY: t.clientY,
@@ -35,6 +35,7 @@ export function SwipeBackIndicator() {
     const onMove = (e: TouchEvent) => {
       if (!state.current.tracking) return;
       const t = e.touches[0];
+      if (!t) return;
       const dx = t.clientX - state.current.startX;
       const dy = t.clientY - state.current.startY;
       if (Math.abs(dy) > 60) {
