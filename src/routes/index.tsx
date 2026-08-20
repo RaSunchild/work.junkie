@@ -203,7 +203,7 @@ function Index() {
 
   // Hover wins on desktop; otherwise the auto-cycled index drives the highlight.
   const activeIndex = hoveredHero ?? autoIndex;
-  const activeBg = heroProjects[activeIndex].bg;
+  const activeBg = (heroProjects[activeIndex] ?? heroProjects[0])?.bg;
 
   // Track scroll progress through the hero pin wrapper so we can fade/blur the
   // hero out smoothly in its final stretch as the next section scrolls up.
