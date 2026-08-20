@@ -77,11 +77,12 @@ export function getArchiveItems(): ArchiveItem[] {
 
   for (const w of writingPieces) {
     if (w.featured) continue;
+    const excerpt = getExcerpt(w, 180);
     items.push({
       title: w.title,
       category: "Writing",
       scope: w.category,
-      description: getExcerpt(w, 180),
+      ...(excerpt ? { description: excerpt } : {}),
       to: "/writing/$slug",
       params: { slug: w.slug },
     });
@@ -92,7 +93,7 @@ export function getArchiveItems(): ArchiveItem[] {
       title: e.title,
       category: e.category,
       scope: e.scope ?? e.category,
-      description: e.description,
+      ...(e.description ? { description: e.description } : {}),
       href: e.href,
     });
   }
