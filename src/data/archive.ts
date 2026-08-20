@@ -56,7 +56,7 @@ export function getArchiveItems(): ArchiveItem[] {
       title: p.title,
       category: "Design",
       scope: p.scope,
-      description: p.description,
+      ...(p.description ? { description: p.description } : {}),
       to: "/projects/$slug",
       params: { slug: p.slug },
     });
@@ -64,11 +64,12 @@ export function getArchiveItems(): ArchiveItem[] {
 
   for (const p of photoProjects) {
     if (p.featured) continue;
+    const firstSentence = p.description?.split(/(?<=\.)\s/)[0];
     items.push({
       title: p.title,
       category: "Photography",
       scope: p.series,
-      description: p.description?.split(/(?<=\.)\s/)[0],
+      ...(firstSentence ? { description: firstSentence } : {}),
       to: "/photography/$slug",
       params: { slug: p.slug },
     });
