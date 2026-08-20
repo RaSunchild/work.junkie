@@ -4,6 +4,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { projects as projectData } from "@/data/projects";
 import { writingPieces, getExcerpt } from "@/data/writing";
 import { MenuButton, useMenu } from "@/components/MenuOverlay";
+import { NavPrompt } from "@/components/NavPrompt";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -602,6 +603,9 @@ function Index() {
         <div className="md:hidden absolute bottom-8 right-8 z-20 font-display text-2xl font-normal tabular-nums">
           {(activeIndex ?? 0) + 1}
         </div>
+
+        {/* Navigation prompts — "Scroll" cue + mobile "Tap to access" hint */}
+        <NavPrompt />
       </section>
       </div>
 
