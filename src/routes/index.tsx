@@ -623,7 +623,7 @@ function Index() {
                 : "reveal-on-scroll overflow-hidden bg-foreground text-background"
             }
           >
-            <div className={`mx-auto grid min-h-[100svh] max-w-[1400px] grid-cols-1 items-center gap-8 px-6 py-[clamp(2rem,5vh,5rem)] md:gap-12 md:px-10 ${b.noImage ? "" : "md:grid-cols-2"}`}>
+            <div className={`mx-auto grid min-h-[100svh] w-full max-w-[1400px] grid-cols-1 content-center items-center gap-6 px-6 py-[clamp(3rem,8vh,6rem)] md:gap-12 md:px-10 ${b.noImage ? "" : "md:grid-cols-2"}`}>
               {/* Image placeholder */}
               {!b.noImage && (
                 <div
@@ -634,7 +634,7 @@ function Index() {
                   }`}
                 >
                   <div
-                    className={`flex w-full items-center justify-center overflow-hidden h-[clamp(50vh,60vh,70vh)] ${
+                    className={`flex w-full items-center justify-center overflow-hidden h-[clamp(34svh,44svh,50svh)] md:h-[clamp(46svh,58svh,64svh)] ${
                       b.image ? "" : `${b.aspect ?? "aspect-square"} ${isDark ? "bg-foreground/15" : "bg-background/15"}`
                     }`}
                   >
@@ -654,7 +654,7 @@ function Index() {
                 data-parallax="-0.06"
                 style={{ willChange: "transform" }}
                 className={`order-2 flex flex-col justify-between ${
-                  b.noImage ? "" : "md:min-h-[clamp(50vh,60vh,70vh)]"
+                  b.noImage ? "" : "md:min-h-[clamp(46svh,58svh,64svh)]"
                 } ${imgFirst ? "md:order-2" : "md:order-1"}`}
               >
                 {b.kind === "poetry" ? (
