@@ -68,7 +68,7 @@ function MenuOverlay() {
     return () => window.clearInterval(id);
   }, [open]);
 
-  const project = projectData[autoIndex];
+  const project = projectData[autoIndex] ?? projectData[0];
 
   return (
     <div
