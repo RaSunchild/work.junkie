@@ -16,6 +16,7 @@ export function useSwipeBack() {
     const onStart = (e: TouchEvent) => {
       if (e.touches.length !== 1) return;
       const t = e.touches[0];
+      if (!t) return;
       // Only trigger when starting near the left edge to avoid hijacking carousels.
       if (t.clientX > 40) {
         tracking = false;
@@ -31,6 +32,7 @@ export function useSwipeBack() {
       if (!tracking) return;
       tracking = false;
       const t = e.changedTouches[0];
+      if (!t) return;
       const dx = t.clientX - startX;
       const dy = t.clientY - startY;
       const dt = Date.now() - startT;
