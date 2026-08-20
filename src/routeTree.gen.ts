@@ -10,33 +10,193 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AchievementsRouteImport } from './routes/achievements'
+import { Route as ArchiveRouteImport } from './routes/archive'
+import { Route as CommissionRouteImport } from './routes/commission'
+import { Route as PlaygroundRouteImport } from './routes/playground'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ResumeRouteImport } from './routes/resume'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as CommissionsSlugRouteImport } from './routes/commissions.$slug'
+import { Route as PhotographySlugRouteImport } from './routes/photography.$slug'
+import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
+import { Route as WritingIndexRouteImport } from './routes/writing.index'
+import { Route as WritingSlugRouteImport } from './routes/writing.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArchiveRoute = ArchiveRouteImport.update({
+  id: '/archive',
+  path: '/archive',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommissionRoute = CommissionRouteImport.update({
+  id: '/commission',
+  path: '/commission',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaygroundRoute = PlaygroundRouteImport.update({
+  id: '/playground',
+  path: '/playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResumeRoute = ResumeRouteImport.update({
+  id: '/resume',
+  path: '/resume',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommissionsSlugRoute = CommissionsSlugRouteImport.update({
+  id: '/commissions/$slug',
+  path: '/commissions/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhotographySlugRoute = PhotographySlugRouteImport.update({
+  id: '/photography/$slug',
+  path: '/photography/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
+  id: '/projects/$slug',
+  path: '/projects/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WritingIndexRoute = WritingIndexRouteImport.update({
+  id: '/writing/',
+  path: '/writing/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WritingSlugRoute = WritingSlugRouteImport.update({
+  id: '/writing/$slug',
+  path: '/writing/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/archive': typeof ArchiveRoute
+  '/commission': typeof CommissionRoute
+  '/playground': typeof PlaygroundRoute
+  '/profile': typeof ProfileRoute
+  '/resume': typeof ResumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/commissions/$slug': typeof CommissionsSlugRoute
+  '/photography/$slug': typeof PhotographySlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/writing/$slug': typeof WritingSlugRoute
+  '/writing/': typeof WritingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/archive': typeof ArchiveRoute
+  '/commission': typeof CommissionRoute
+  '/playground': typeof PlaygroundRoute
+  '/profile': typeof ProfileRoute
+  '/resume': typeof ResumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/commissions/$slug': typeof CommissionsSlugRoute
+  '/photography/$slug': typeof PhotographySlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/writing/$slug': typeof WritingSlugRoute
+  '/writing': typeof WritingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/archive': typeof ArchiveRoute
+  '/commission': typeof CommissionRoute
+  '/playground': typeof PlaygroundRoute
+  '/profile': typeof ProfileRoute
+  '/resume': typeof ResumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/commissions/$slug': typeof CommissionsSlugRoute
+  '/photography/$slug': typeof PhotographySlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/writing/$slug': typeof WritingSlugRoute
+  '/writing/': typeof WritingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/achievements'
+    | '/archive'
+    | '/commission'
+    | '/playground'
+    | '/profile'
+    | '/resume'
+    | '/sitemap.xml'
+    | '/commissions/$slug'
+    | '/photography/$slug'
+    | '/projects/$slug'
+    | '/writing/$slug'
+    | '/writing/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/achievements'
+    | '/archive'
+    | '/commission'
+    | '/playground'
+    | '/profile'
+    | '/resume'
+    | '/sitemap.xml'
+    | '/commissions/$slug'
+    | '/photography/$slug'
+    | '/projects/$slug'
+    | '/writing/$slug'
+    | '/writing'
+  id:
+    | '__root__'
+    | '/'
+    | '/achievements'
+    | '/archive'
+    | '/commission'
+    | '/playground'
+    | '/profile'
+    | '/resume'
+    | '/sitemap.xml'
+    | '/commissions/$slug'
+    | '/photography/$slug'
+    | '/projects/$slug'
+    | '/writing/$slug'
+    | '/writing/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AchievementsRoute: typeof AchievementsRoute
+  ArchiveRoute: typeof ArchiveRoute
+  CommissionRoute: typeof CommissionRoute
+  PlaygroundRoute: typeof PlaygroundRoute
+  ProfileRoute: typeof ProfileRoute
+  ResumeRoute: typeof ResumeRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  CommissionsSlugRoute: typeof CommissionsSlugRoute
+  PhotographySlugRoute: typeof PhotographySlugRoute
+  ProjectsSlugRoute: typeof ProjectsSlugRoute
+  WritingSlugRoute: typeof WritingSlugRoute
+  WritingIndexRoute: typeof WritingIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +208,107 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/archive': {
+      id: '/archive'
+      path: '/archive'
+      fullPath: '/archive'
+      preLoaderRoute: typeof ArchiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commission': {
+      id: '/commission'
+      path: '/commission'
+      fullPath: '/commission'
+      preLoaderRoute: typeof CommissionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playground': {
+      id: '/playground'
+      path: '/playground'
+      fullPath: '/playground'
+      preLoaderRoute: typeof PlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resume': {
+      id: '/resume'
+      path: '/resume'
+      fullPath: '/resume'
+      preLoaderRoute: typeof ResumeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commissions/$slug': {
+      id: '/commissions/$slug'
+      path: '/commissions/$slug'
+      fullPath: '/commissions/$slug'
+      preLoaderRoute: typeof CommissionsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/photography/$slug': {
+      id: '/photography/$slug'
+      path: '/photography/$slug'
+      fullPath: '/photography/$slug'
+      preLoaderRoute: typeof PhotographySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/$slug': {
+      id: '/projects/$slug'
+      path: '/projects/$slug'
+      fullPath: '/projects/$slug'
+      preLoaderRoute: typeof ProjectsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/writing/': {
+      id: '/writing/'
+      path: '/writing'
+      fullPath: '/writing/'
+      preLoaderRoute: typeof WritingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/writing/$slug': {
+      id: '/writing/$slug'
+      path: '/writing/$slug'
+      fullPath: '/writing/$slug'
+      preLoaderRoute: typeof WritingSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AchievementsRoute: AchievementsRoute,
+  ArchiveRoute: ArchiveRoute,
+  CommissionRoute: CommissionRoute,
+  PlaygroundRoute: PlaygroundRoute,
+  ProfileRoute: ProfileRoute,
+  ResumeRoute: ResumeRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  CommissionsSlugRoute: CommissionsSlugRoute,
+  PhotographySlugRoute: PhotographySlugRoute,
+  ProjectsSlugRoute: ProjectsSlugRoute,
+  WritingSlugRoute: WritingSlugRoute,
+  WritingIndexRoute: WritingIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

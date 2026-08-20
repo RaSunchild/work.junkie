@@ -1,0 +1,20 @@
+# Kimara
+
+> The portfolio of Kimara — a multihyphenate creative. Selected works across photography, design, and creative practice.
+
+## Pages
+
+- [Home](/): Portfolio landing with featured projects and work highlights.
+- [Writing](/writing): Essays, reflections, and notes on photography, design, and creative practice.
+- [Resume](/resume): Selected fellowships, programs, and partnerships — a chronological record of work.
+- [Achievements](/achievements): Awards, press features, and notable recognitions.
+- [Archive](/archive): Past work and projects.
+- [Commission](/commission): Commission information and how to work together.
+- [Profile](/profile): About Kimara — background, practice, and creative approach.
+- [Playground](/playground): Experiments and playful creative explorations.
+
+## Optional
+
+- [Writing: The nature of COLLECTIVE](/writing/the-nature-of-collective): Essay on design and creative practice.
+- [Project: Architecture and Interior](/projects/architecture-and-interior): Architecture and interior photography project.
+- [Project: VEILED](/projects/veiled): Poster design project.
