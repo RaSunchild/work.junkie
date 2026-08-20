@@ -53,6 +53,7 @@ export function SwipeBackIndicator() {
         return;
       }
       const t = e.changedTouches[0];
+      if (!t) return;
       const dx = t.clientX - state.current.startX;
       const dy = t.clientY - state.current.startY;
       const dt = Date.now() - state.current.startT;
