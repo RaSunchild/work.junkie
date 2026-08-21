@@ -623,18 +623,26 @@ function Index() {
             ref={(node) => {
               blockRefs.current[i] = node;
             }}
-            className={
-              isDark
-                ? "reveal-on-scroll overflow-hidden bg-background text-foreground"
-                : "reveal-on-scroll overflow-hidden bg-foreground text-background"
-            }
+            className={`reveal-on-scroll relative isolate h-[100svh] overflow-hidden ${
+              isDark ? "text-foreground" : "text-background"
+            }`}
           >
-            <div className={`mx-auto grid min-h-[100svh] w-full max-w-[1400px] grid-cols-1 content-center items-center gap-6 px-6 py-[clamp(3rem,8vh,6rem)] md:gap-12 md:px-10 ${b.noImage ? "" : "md:grid-cols-2"}`}>
+            {/* Background layer — clipped strictly to this section, drifting at
+                ~65% of scroll speed. Oversized so the parallax offset can never
+                expose a gap or let the neighbouring colour bleed in. */}
+            <div
+              aria-hidden
+              data-parallax="0.35"
+              data-parallax-vh=""
+              style={{ willChange: "transform" }}
+              className={`pointer-events-none absolute inset-x-0 -top-[45svh] -bottom-[45svh] -z-10 ${
+                isDark ? "bg-background" : "bg-foreground"
+              }`}
+            />
+            <div className={`relative mx-auto grid h-full w-full max-w-[1400px] grid-cols-1 content-center items-center gap-6 px-6 py-[clamp(3rem,8vh,6rem)] md:gap-12 md:px-10 ${b.noImage ? "" : "md:grid-cols-2"}`}>
               {/* Image placeholder */}
               {!b.noImage && (
                 <div
-                  data-parallax="0.14"
-                  style={{ willChange: "transform" }}
                   className={`order-1 ${
                     imgFirst ? "md:order-1" : "md:order-2"
                   }`}
@@ -657,9 +665,8 @@ function Index() {
 
               {/* Text column */}
               <div
-                data-parallax="-0.06"
-                style={{ willChange: "transform" }}
                 className={`order-2 flex flex-col justify-between ${
+
                   b.noImage ? "" : "md:min-h-[clamp(46svh,58svh,64svh)]"
                 } ${imgFirst ? "md:order-2" : "md:order-1"}`}
               >
