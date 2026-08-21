@@ -299,15 +299,13 @@ function Index() {
         return;
       }
       isSnapping = true;
-      // Distance-aware duration: short corrections settle quickly, long
-      // travels glide, so every snap feels like one continuous motion.
-      const duration = Math.min(
-        1200,
-        Math.max(420, 380 + Math.abs(distance) * 0.9),
-      );
+      // Editorial page-turn: a fixed, decisive 600ms ease-in-out.
+      const duration = 600;
       const startTime = performance.now();
-      // easeOutQuint — fast pickup, long soft landing.
-      const ease = (t: number) => 1 - Math.pow(1 - t, 5);
+      // easeInOutCubic — smooth on both ends, never bouncy.
+      const ease = (t: number) =>
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
       const step = (now: number) => {
         if (!isSnapping) return;
         const t = Math.min(1, (now - startTime) / duration);
