@@ -249,13 +249,17 @@ function Index() {
       const vh = window.innerHeight;
       for (const el of els) {
         const speed = Number(el.dataset["parallax"] ?? "0");
+        // When data-parallaxVh is set, the speed is a fraction of the viewport
+        // height (so 0.35 => background travels at ~65% of scroll speed).
+        const unit = el.dataset["parallaxVh"] !== undefined ? vh : 100;
         const r = el.getBoundingClientRect();
         if (r.bottom < -vh || r.top > vh * 2) continue;
         // -1 (below viewport) .. 1 (above viewport)
         const centered = (r.top + r.height / 2 - vh / 2) / vh;
-        el.style.transform = `translate3d(0, ${(centered * speed * 100).toFixed(2)}px, 0)`;
+        el.style.transform = `translate3d(0, ${(centered * speed * unit).toFixed(2)}px, 0)`;
       }
     };
+
     const onScroll = () => {
       if (!raf) raf = window.requestAnimationFrame(apply);
     };
@@ -295,15 +299,13 @@ function Index() {
         return;
       }
       isSnapping = true;
-      // Distance-aware duration: short corrections settle quickly, long
-      // travels glide, so every snap feels like one continuous motion.
-      const duration = Math.min(
-        1200,
-        Math.max(420, 380 + Math.abs(distance) * 0.9),
-      );
+      // Editorial page-turn: a fixed, decisive 600ms ease-in-out.
+      const duration = 600;
       const startTime = performance.now();
-      // easeOutQuint — fast pickup, long soft landing.
-      const ease = (t: number) => 1 - Math.pow(1 - t, 5);
+      // easeInOutCubic — smooth on both ends, never bouncy.
+      const ease = (t: number) =>
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
       const step = (now: number) => {
         if (!isSnapping) return;
         const t = Math.min(1, (now - startTime) / duration);
@@ -621,18 +623,26 @@ function Index() {
             ref={(node) => {
               blockRefs.current[i] = node;
             }}
-            className={
-              isDark
-                ? "reveal-on-scroll overflow-hidden bg-background text-foreground"
-                : "reveal-on-scroll overflow-hidden bg-foreground text-background"
-            }
+            className={`relative isolate h-[100svh] overflow-hidden ${
+              isDark ? "text-foreground" : "text-background"
+            }`}
           >
-            <div className={`mx-auto grid min-h-[100svh] w-full max-w-[1400px] grid-cols-1 content-center items-center gap-6 px-6 py-[clamp(3rem,8vh,6rem)] md:gap-12 md:px-10 ${b.noImage ? "" : "md:grid-cols-2"}`}>
+            {/* Background layer — clipped strictly to this section, drifting at
+                ~65% of scroll speed. Oversized so the parallax offset can never
+                expose a gap or let the neighbouring colour bleed in. */}
+            <div
+              aria-hidden
+              data-parallax="0.35"
+              data-parallax-vh=""
+              style={{ willChange: "transform" }}
+              className={`pointer-events-none absolute inset-x-0 -top-[45svh] -bottom-[45svh] -z-10 ${
+                isDark ? "bg-background" : "bg-foreground"
+              }`}
+            />
+            <div className={`reveal-on-scroll relative mx-auto grid h-full w-full max-w-[1400px] grid-cols-1 content-center items-center gap-6 px-6 py-[clamp(3rem,8vh,6rem)] md:gap-12 md:px-10 ${b.noImage ? "" : "md:grid-cols-2"}`}>
               {/* Image placeholder */}
               {!b.noImage && (
                 <div
-                  data-parallax="0.14"
-                  style={{ willChange: "transform" }}
                   className={`order-1 ${
                     imgFirst ? "md:order-1" : "md:order-2"
                   }`}
@@ -655,9 +665,8 @@ function Index() {
 
               {/* Text column */}
               <div
-                data-parallax="-0.06"
-                style={{ willChange: "transform" }}
                 className={`order-2 flex flex-col justify-between ${
+
                   b.noImage ? "" : "md:min-h-[clamp(46svh,58svh,64svh)]"
                 } ${imgFirst ? "md:order-2" : "md:order-1"}`}
               >
