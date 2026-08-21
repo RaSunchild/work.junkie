@@ -249,13 +249,17 @@ function Index() {
       const vh = window.innerHeight;
       for (const el of els) {
         const speed = Number(el.dataset["parallax"] ?? "0");
+        // When data-parallaxVh is set, the speed is a fraction of the viewport
+        // height (so 0.35 => background travels at ~65% of scroll speed).
+        const unit = el.dataset["parallaxVh"] !== undefined ? vh : 100;
         const r = el.getBoundingClientRect();
         if (r.bottom < -vh || r.top > vh * 2) continue;
         // -1 (below viewport) .. 1 (above viewport)
         const centered = (r.top + r.height / 2 - vh / 2) / vh;
-        el.style.transform = `translate3d(0, ${(centered * speed * 100).toFixed(2)}px, 0)`;
+        el.style.transform = `translate3d(0, ${(centered * speed * unit).toFixed(2)}px, 0)`;
       }
     };
+
     const onScroll = () => {
       if (!raf) raf = window.requestAnimationFrame(apply);
     };
