@@ -623,7 +623,7 @@ function Index() {
             ref={(node) => {
               blockRefs.current[i] = node;
             }}
-            className={`reveal-on-scroll relative isolate h-[100svh] overflow-hidden ${
+            className={`relative isolate h-[100svh] overflow-hidden ${
               isDark ? "text-foreground" : "text-background"
             }`}
           >
