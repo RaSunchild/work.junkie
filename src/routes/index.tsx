@@ -639,7 +639,7 @@ function Index() {
                 isDark ? "bg-background" : "bg-foreground"
               }`}
             />
-            <div className={`relative mx-auto grid h-full w-full max-w-[1400px] grid-cols-1 content-center items-center gap-6 px-6 py-[clamp(3rem,8vh,6rem)] md:gap-12 md:px-10 ${b.noImage ? "" : "md:grid-cols-2"}`}>
+            <div className={`reveal-on-scroll relative mx-auto grid h-full w-full max-w-[1400px] grid-cols-1 content-center items-center gap-6 px-6 py-[clamp(3rem,8vh,6rem)] md:gap-12 md:px-10 ${b.noImage ? "" : "md:grid-cols-2"}`}>
               {/* Image placeholder */}
               {!b.noImage && (
                 <div
