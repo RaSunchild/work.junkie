@@ -215,8 +215,12 @@ function Index() {
   useEffect(() => {
     const nodes = blockRefs.current.filter((n): n is HTMLElement => Boolean(n));
     if (nodes.length === 0) return;
+    const revealEls = nodes
+      .map((n) => n.querySelector<HTMLElement>(".reveal-on-scroll"))
+      .filter((n): n is HTMLElement => Boolean(n));
+    if (revealEls.length === 0) return;
     if (typeof IntersectionObserver === "undefined") {
-      nodes.forEach((n) => n.classList.add("is-visible"));
+      revealEls.forEach((n) => n.classList.add("is-visible"));
       return;
     }
     const io = new IntersectionObserver(
@@ -232,7 +236,7 @@ function Index() {
       },
       { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
     );
-    nodes.forEach((n) => io.observe(n));
+    revealEls.forEach((n) => io.observe(n));
     return () => io.disconnect();
   }, []);
   // Vertical parallax — elements marked with data-parallax drift at a slower/faster
