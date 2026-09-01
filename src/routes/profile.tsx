@@ -1,7 +1,7 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MenuButton } from "@/components/MenuOverlay";
-import kimaraProfile from "@/assets/kimara-profile.webp.asset.json";
+import kimaraProfile from "@/assets/ra-profile.webp.asset.json";
 
 
 export const Route = createFileRoute("/profile")({
