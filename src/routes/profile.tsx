@@ -24,7 +24,7 @@ export const Route = createFileRoute("/profile")({
   }),
 });
 
-const CAPTION = "font-sans text-[11px] font-bold uppercase tracking-[0.25em]";
+
 
 function ProfilePage() {
 
@@ -60,13 +60,6 @@ function ProfilePage() {
             >
               sunchild
             </p>
-            <div
-              className="mt-4 whitespace-pre-line font-sans leading-relaxed text-foreground/80"
-              style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)" }}
-            >
-              You are the light. It's not on you, it's in you. Don't you ever in your life dim your light for nobody out here.
-              -<em>CHROMAKOPIA</em> opening.&nbsp;
-            </div>
           </div>
           <div className="hidden md:order-2 md:block">
             <img
@@ -76,16 +69,6 @@ function ProfilePage() {
             />
           </div>
         </div>
-      </section>
-
-      {/* Interests */}
-      <section className="px-6 py-[clamp(2rem,4vw,3rem)] md:px-10">
-        <div className={CAPTION}>BIO</div>
-        <ul
-          className="mt-[clamp(1rem,2vw,1.5rem)] space-y-1 font-sans leading-relaxed text-foreground/80"
-          style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)" }}
-        >
-        </ul>
       </section>
 
       <hr className="mx-6 border-foreground/15 md:mx-10" />
