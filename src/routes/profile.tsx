@@ -60,13 +60,6 @@ function ProfilePage() {
             >
               sunchild
             </p>
-            <div
-              className="mt-4 whitespace-pre-line font-sans leading-relaxed text-foreground/80"
-              style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)" }}
-            >
-              You are the light. It's not on you, it's in you. Don't you ever in your life dim your light for nobody out here.
-              -<em>CHROMAKOPIA</em> opening.&nbsp;
-            </div>
           </div>
           <div className="hidden md:order-2 md:block">
             <img
