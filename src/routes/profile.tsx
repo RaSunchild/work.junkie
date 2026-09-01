@@ -80,7 +80,7 @@ function ProfilePage() {
 
       {/* Interests */}
       <section className="px-6 py-[clamp(2rem,4vw,3rem)] md:px-10">
-        <div className={CAPTION}>Interests</div>
+        <div className={CAPTION}>BIO</div>
         <ul
           className="mt-[clamp(1rem,2vw,1.5rem)] space-y-1 font-sans leading-relaxed text-foreground/80"
           style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)" }}
