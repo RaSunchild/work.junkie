@@ -85,10 +85,6 @@ function ProfilePage() {
           className="mt-[clamp(1rem,2vw,1.5rem)] space-y-1 font-sans leading-relaxed text-foreground/80"
           style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)" }}
         >
-          <li>Photography</li>
-          <li>Gaming</li>
-          <li>Book Club</li>
-          <li>Walks</li>
         </ul>
       </section>
 
