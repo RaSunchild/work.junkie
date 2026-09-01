@@ -24,7 +24,7 @@ export const Route = createFileRoute("/profile")({
   }),
 });
 
-const CAPTION = "font-sans text-[11px] font-bold uppercase tracking-[0.25em]";
+
 
 function ProfilePage() {
 
