@@ -46,7 +46,7 @@ function ProfilePage() {
       {/* Bio block */}
       <section className="px-6 py-[clamp(2rem,5vw,4rem)] md:px-10">
         <div className="grid grid-cols-1 gap-x-[clamp(1.5rem,4vw,3rem)] gap-y-[clamp(1.5rem,4vw,2.5rem)] md:grid-cols-2">
-          <div className="contents md:order-1 md:block md:flex md:flex-col md:justify-end">
+          <div className="contents md:order-2 md:block md:flex md:flex-col md:justify-end">
             <div className="md:hidden">
               <img
                 src={kimaraProfile.url}
@@ -61,7 +61,7 @@ function ProfilePage() {
               sunchild
             </p>
           </div>
-          <div className="hidden md:order-2 md:block">
+          <div className="hidden md:order-1 md:block">
             <img
               src={kimaraProfile.url}
               alt="Portrait of Ra (Jonathan Kimara)"
