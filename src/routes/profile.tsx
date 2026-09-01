@@ -58,7 +58,7 @@ function ProfilePage() {
               className="mt-[clamp(1rem,2vw,1.5rem)] font-sans leading-relaxed text-foreground/80 whitespace-pre-line"
               style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)" }}
             >
-              sunchild
+              Born Jonathan Kimara, Ra is a visual artist, writer, and designer whose practice draws from conversation, research, collaboration, and observation.
             </p>
           </div>
           <div className="hidden md:order-1 md:block">
