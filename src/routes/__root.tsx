@@ -80,11 +80,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { title: "sunchild" },
       { name: "description", content: "Visual Art. Design. Writing" },
-      { name: "author", content: "Ra (Jonathan Kimara)" },
+      { name: "author", content: "Lovable" },
       { property: "og:title", content: "sunchild" },
       { property: "og:description", content: "Visual Art. Design. Writing" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "sunchild" },
       { name: "twitter:description", content: "Visual Art. Design. Writing" },
       {
@@ -108,7 +109,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap",
       },
     ],
   }),

@@ -660,8 +660,6 @@ function Index() {
                       <img
                         src={b.image}
                         alt={b.title}
-                        loading="lazy"
-                        decoding="async"
                         className="h-full w-full object-contain"
                       />
                     )}
