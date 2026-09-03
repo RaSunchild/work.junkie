@@ -131,6 +131,8 @@ function CommissionDetailPage() {
                   key={activeIndex}
                   src={heroImage.src}
                   alt={heroImage.caption ?? commission.title}
+                  decoding="async"
+                  fetchPriority="high"
                   className="block h-auto w-full object-contain animate-fade-in"
                 />
               )}

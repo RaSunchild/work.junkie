@@ -77,6 +77,8 @@ export function ProjectLayout({ project }: { project: Project }) {
               src={heroImage.src}
               alt=""
               aria-hidden
+              decoding="async"
+              fetchPriority="high"
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div
@@ -214,15 +216,17 @@ export function ProjectLayout({ project }: { project: Project }) {
                       }}
                       src={img.src}
                       className="h-full w-full object-contain"
-                      autoPlay
+                      autoPlay={i === safeIdx}
                       muted={muted}
                       playsInline
-                      preload="metadata"
+                      preload={i === safeIdx ? "metadata" : "none"}
                     />
                   ) : (
                     <img
                       src={img.src}
                       alt=""
+                      loading={i === 0 ? "eager" : "lazy"}
+                      decoding="async"
                       className="h-full w-full object-contain"
                     />
                   )}

@@ -43,6 +43,8 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
                 src={hero.src}
                 alt=""
                 aria-hidden
+                decoding="async"
+                fetchPriority="high"
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div
@@ -143,6 +145,8 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
                 <img
                   src={img.src}
                   alt={img.caption ?? ""}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  decoding="async"
                   className="h-full w-full object-contain"
                 />
               </div>
@@ -179,6 +183,8 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
                     <img
                       src={img.src}
                       alt=""
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover"
                     />
                   </button>
