@@ -5,6 +5,7 @@ import { projects as projectData } from "@/data/projects";
 import { writingPieces, getExcerpt } from "@/data/writing";
 import { MenuButton, useMenu } from "@/components/MenuOverlay";
 import { NavPrompt } from "@/components/NavPrompt";
+import exposureCoverAsset from "@/assets/exposure-cover.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -67,7 +68,7 @@ const blocks: Block[] = [
     imageSide: "left",
     aspect: "aspect-[4/3]",
     photoSlug: "exposure",
-    
+    image: exposureCoverAsset.url,
   },
   {
     title: "Landfill to Catwalk.",
