@@ -51,6 +51,8 @@ function ProfilePage() {
               <img
                 src={kimaraProfile.url}
                 alt="Portrait of Ra (Jonathan Kimara)"
+                decoding="async"
+                fetchPriority="high"
                 className="aspect-[3/4] w-full object-cover"
               />
             </div>
@@ -65,6 +67,8 @@ function ProfilePage() {
             <img
               src={kimaraProfile.url}
               alt="Portrait of Ra (Jonathan Kimara)"
+              decoding="async"
+              fetchPriority="high"
               className="aspect-[3/4] w-full object-cover"
             />
           </div>
