@@ -24,7 +24,6 @@ export type PhotoProject = {
 import jjI from "@/assets/portraits-with-strangers/jj-i.webp";
 import jjII from "@/assets/portraits-with-strangers/jj-ii.webp";
 import jjIII from "@/assets/portraits-with-strangers/jj-iii.webp";
-import exposureCoverAsset from "@/assets/exposure-cover.webp.asset.json";
 
 export const photoProjects: PhotoProject[] = [
   {
@@ -57,7 +56,7 @@ export const photoProjects: PhotoProject[] = [
     description: "This project explores exposure in a dual-context; the technical and conceptual. The technical aspect of the project explores the manipulation of ISO, Shutter Speed, and Aperture and the conceptual, the act of revealing a subject, moment, or narrative to the viewer.",
     images: [
       { aspect: "aspect-[3/2]", src: null, caption: "To be exposed" },
-      { aspect: "aspect-[16/9]", src: exposureCoverAsset.url, caption: "A sea of matatus" },
+      { aspect: "aspect-[16/9]", src: null, caption: "A sea of matatus" },
       { aspect: "aspect-[3/2]", src: null, caption: "After hours" },
       { aspect: "aspect-[2/3]", src: null },
     ],
