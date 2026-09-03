@@ -31,7 +31,10 @@ export function useMenu() {
 const links: { label: string; to: string }[] = [
   { label: "Profile", to: "/profile" },
   { label: "Resume", to: "/resume" },
+  { label: "Writing", to: "/writing" },
   { label: "Archive", to: "/archive" },
+  { label: "Achievements", to: "/achievements" },
+  { label: "Commission", to: "/commission" },
   { label: "Playground", to: "/playground" },
 ];
 
@@ -73,6 +76,7 @@ function MenuOverlay() {
   return (
     <div
       aria-hidden={!open}
+      inert={!open}
       className={`fixed inset-0 z-50 transition-opacity duration-300 ${
         open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
