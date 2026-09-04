@@ -1,6 +1,5 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { projects as projectData } from "@/data/projects";
 
 type MenuContextValue = {
   open: boolean;
