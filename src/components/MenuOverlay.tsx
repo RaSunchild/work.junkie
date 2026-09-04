@@ -37,8 +37,6 @@ const links: { label: string; to: string }[] = [
 
 function MenuOverlay() {
   const { open, setOpen } = useMenu();
-  const [autoIndex, setAutoIndex] = useState(0);
-
   // Lock body scroll while open
   useEffect(() => {
     if (!open) return;
@@ -58,17 +56,6 @@ function MenuOverlay() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, setOpen]);
-
-  // Cycle the right-panel project image
-  useEffect(() => {
-    if (!open) return;
-    const id = window.setInterval(() => {
-      setAutoIndex((i) => (i + 1) % projectData.length);
-    }, 4000);
-    return () => window.clearInterval(id);
-  }, [open]);
-
-  const project = projectData[autoIndex] ?? projectData[0]!;
 
   return (
     <div
