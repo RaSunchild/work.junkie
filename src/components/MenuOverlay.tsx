@@ -31,10 +31,7 @@ export function useMenu() {
 const links: { label: string; to: string }[] = [
   { label: "Profile", to: "/profile" },
   { label: "Resume", to: "/resume" },
-  { label: "Writing", to: "/writing" },
   { label: "Archive", to: "/archive" },
-  { label: "Achievements", to: "/achievements" },
-  { label: "Commission", to: "/commission" },
   { label: "Playground", to: "/playground" },
 ];
 
