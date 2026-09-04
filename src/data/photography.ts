@@ -55,7 +55,7 @@ export const photoProjects: PhotoProject[] = [
     photographer: "J. KIMARA",
     series: "STREET PHOTOGRAPHY",
     location: "KAMPALA",
-    date: "IN-PROGRESS",
+    date: "2026",
     description: "This project explores exposure in a dual-context; the technical and conceptual. The technical aspect of the project explores the manipulation of ISO, Shutter Speed, and Aperture and the conceptual, the act of revealing a subject, moment, or narrative to the viewer.",
     images: [
       { aspect: "aspect-[3/2]", src: null, caption: "To be exposed" },
