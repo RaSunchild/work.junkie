@@ -82,12 +82,21 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
       {/* ============ META ============ */}
       <section className="bg-background text-foreground">
         <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-y-8 px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,5vw,4rem)] md:grid-cols-[1fr_2fr] md:gap-x-12">
-          <div>
-            <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/70">
-              CREDITS
-            </span>
-            <p className="mt-3 font-sans text-base font-semibold">{project.photographer}</p>
-          </div>
+          {project.collaborators && project.collaborators.length > 0 ? (
+            <div>
+              <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/70">
+                CREDITS
+              </span>
+              {project.collaborators.map((name) => (
+                <p key={name} className="mt-3 font-sans text-base font-semibold">
+                  {name}
+                </p>
+              ))}
+            </div>
+          ) : (
+            <div aria-hidden className="hidden md:block" />
+          )}
+
 
           <div className="space-y-8">
             <div>
