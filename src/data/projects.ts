@@ -20,7 +20,8 @@ export type Project = {
   title: string;
   code?: string;
   heroBg: string;
-  contributors: string[];
+  /** Only rendered when collaborators are supplied in project context. */
+  contributors?: string[];
   scope: string;
   date: string;
   description: string;
@@ -40,7 +41,6 @@ export const projects: Project[] = [
     title: "v+ DfX",
     heroBg:
       "radial-gradient(circle at 40% 50%, #4a3a6e 0%, #1f1830 60%, #08050f 100%)",
-    contributors: ["KIMARA JONATHAN"],
     scope: "Design Thinking. UX/UI Design",
     date: "2025 to DATE",
     description:
@@ -63,7 +63,6 @@ export const projects: Project[] = [
     title: "The garden.",
     heroBg:
       "radial-gradient(circle at 70% 30%, #2d4a5a 0%, #14232e 60%, #060b10 100%)",
-    contributors: ["KIMARA JONATHAN"],
     scope: "Branding. Packaging Design",
     date: "2026",
     description:
@@ -79,7 +78,6 @@ export const projects: Project[] = [
     title: "out.x.about",
     heroBg:
       "radial-gradient(circle at 50% 50%, #5a4a2d 0%, #2a2114 60%, #0a0804 100%)",
-    contributors: ["KIMARA JONATHAN"],
     scope: "COLLECTIVE",
     date: "2026",
     description: "Details on the design project.",
@@ -93,7 +91,6 @@ export const projects: Project[] = [
     title: "UWEZO",
     heroBg:
       "radial-gradient(circle at 35% 45%, #49C4C1 0%, #0077B6 25%, #3C4F76 55%, #0f172a 100%)",
-    contributors: ["KIMARA JONATHAN"],
     scope: "Brand Identity Design",
     date: "2026",
     description:
@@ -108,7 +105,6 @@ export const projects: Project[] = [
     title: "VEILED",
     heroBg:
       "radial-gradient(circle at 50% 50%, #3a3a3a 0%, #161616 60%, #050505 100%)",
-    contributors: ["KIMARA JONATHAN"],
     scope: "Poster Design",
     date: "2026",
     description: "Typography is a design sense that relies on the manipulation of type to convey emotions, themes, and context. Poster design for \"VEILED\".",

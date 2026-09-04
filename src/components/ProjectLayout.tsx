@@ -132,19 +132,28 @@ export function ProjectLayout({ project }: { project: Project }) {
 
       {/* ============ META ============ */}
       <section className="bg-background text-foreground">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-y-8 px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,5vw,4rem)] md:grid-cols-[1fr_2fr] md:gap-x-12">
-          <div>
-            <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/70">
-              Credits
-            </span>
-            <ul className="mt-3 space-y-1">
-              {project.contributors.map((c) => (
-                <li key={c} className="font-sans text-base font-semibold">
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div
+          className={`mx-auto grid max-w-[1400px] grid-cols-1 gap-y-8 px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,5vw,4rem)] md:gap-x-12 ${
+            project.contributors && project.contributors.length > 0
+              ? "md:grid-cols-[1fr_2fr]"
+              : ""
+          }`}
+        >
+          {project.contributors && project.contributors.length > 0 ? (
+            <div>
+              <span className="block font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-foreground/70">
+                Credits
+              </span>
+              <ul className="mt-3 space-y-1">
+                {project.contributors.map((c) => (
+                  <li key={c} className="font-sans text-base font-semibold">
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
 
           <div className="space-y-8">
             <div>
