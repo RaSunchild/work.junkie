@@ -663,7 +663,7 @@ function Index() {
                         alt={b.title}
                         loading="lazy"
                         decoding="async"
-                        className="h-full w-full object-contain"
+                        className="h-full w-full object-cover"
                       />
                     )}
                   </div>
