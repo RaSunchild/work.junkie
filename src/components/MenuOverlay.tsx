@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { projects as projectData } from "@/data/projects";
 
 type MenuContextValue = {
   open: boolean;
@@ -37,8 +36,6 @@ const links: { label: string; to: string }[] = [
 
 function MenuOverlay() {
   const { open, setOpen } = useMenu();
-  const [autoIndex, setAutoIndex] = useState(0);
-
   // Lock body scroll while open
   useEffect(() => {
     if (!open) return;
@@ -58,17 +55,6 @@ function MenuOverlay() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, setOpen]);
-
-  // Cycle the right-panel project image
-  useEffect(() => {
-    if (!open) return;
-    const id = window.setInterval(() => {
-      setAutoIndex((i) => (i + 1) % projectData.length);
-    }, 4000);
-    return () => window.clearInterval(id);
-  }, [open]);
-
-  const project = projectData[autoIndex] ?? projectData[0]!;
 
   return (
     <div
@@ -115,23 +101,8 @@ function MenuOverlay() {
           </nav>
         </div>
 
-        {/* RIGHT — cycling project image with close button */}
-        <div
-          className="relative hidden md:flex flex-col text-background"
-          style={{ background: project.heroBg }}
-        >
-          {/* Cross-fade backgrounds */}
-          {projectData.map((p, i) => (
-            <div
-              key={p.slug}
-              aria-hidden
-              className={`absolute inset-0 transition-opacity duration-700 ${
-                i === autoIndex ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ background: p.heroBg }}
-            />
-          ))}
-
+        {/* RIGHT — solid background with close button */}
+        <div className="relative hidden md:flex flex-col text-background bg-background">
           <div className="relative flex items-center justify-end px-[clamp(1rem,4vw,2.5rem)] pt-[clamp(1rem,3vw,2rem)]">
             <button
               type="button"
@@ -141,34 +112,17 @@ function MenuOverlay() {
               style={{ width: "clamp(1.25rem, 2vw, 2rem)", height: "clamp(1.25rem, 2vw, 2rem)" }}
             >
               <span
-                className="absolute left-0 top-1/2 block h-[2px] -translate-y-1/2 rotate-45 bg-background"
+                className="absolute left-0 top-1/2 block h-[2px] -translate-y-1/2 rotate-45 bg-foreground"
                 style={{ width: "clamp(1.25rem, 2vw, 2rem)" }}
               />
               <span
-                className="absolute left-0 top-1/2 block h-[2px] -translate-y-1/2 -rotate-45 bg-background"
+                className="absolute left-0 top-1/2 block h-[2px] -translate-y-1/2 -rotate-45 bg-foreground"
                 style={{ width: "clamp(1.25rem, 2vw, 2rem)" }}
               />
             </button>
           </div>
 
           <div className="flex-1" />
-
-          <div className="relative flex items-end justify-between gap-6 px-[clamp(1.5rem,4vw,2.5rem)] pb-[clamp(1.5rem,4vw,2.5rem)]">
-            <Link
-              to="/projects/$slug"
-              params={{ slug: project.slug }}
-              onClick={() => setOpen(false)}
-              className="font-sans text-xs uppercase tracking-[0.25em] text-background/80 hover:text-background"
-            >
-              {project.title}
-            </Link>
-            <span
-              className="font-display font-medium leading-none tabular-nums text-background"
-              style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)" }}
-            >
-              {autoIndex + 1}
-            </span>
-          </div>
         </div>
       </div>
     </div>
