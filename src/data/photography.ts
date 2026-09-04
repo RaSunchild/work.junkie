@@ -9,6 +9,8 @@ export type PhotoProject = {
   title: string;
   heroBg: string;
   photographer: string;
+  /** Only rendered when collaborators are supplied in project context. */
+  collaborators?: string[];
   series: string;
   location: string;
   date: string;
