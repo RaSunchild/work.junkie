@@ -1,9 +1,10 @@
 import { SiteFooter } from "@/components/SiteFooter";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type * as React from "react";
 import { Link } from "@tanstack/react-router";
 import type { PhotoProject } from "@/data/photography";
 import { MenuButton } from "@/components/MenuOverlay";
+import { useSnapSections, sectionTop } from "@/hooks/useSnapSections";
 
 export function PhotoLayout({ project }: { project: PhotoProject }) {
   const galleryImages = project.images.filter(
@@ -19,6 +20,21 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
     }, 4000);
     return () => clearInterval(id);
   }, [galleryImages.length, activeIdx]);
+
+  // Full-viewport snap stops: cover → details → gallery → footer.
+  const coverRef = useRef<HTMLElement | null>(null);
+  const detailsRef = useRef<HTMLElement | null>(null);
+  const galleryRef = useRef<HTMLElement | null>(null);
+  const footerWrapRef = useRef<HTMLDivElement | null>(null);
+  const getStops = useCallback(
+    () =>
+      [coverRef.current, detailsRef.current, galleryRef.current, footerWrapRef.current]
+        .map((el) => sectionTop(el))
+        .filter((n): n is number => n !== null),
+    [],
+  );
+  useSnapSections(getStops);
+
   return (
     <main
       className="w-full bg-background text-foreground"
@@ -29,9 +45,10 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
         } as React.CSSProperties
       }
     >
-      {/* ============ HERO ============ */}
+      {/* ============ 1. COVER ============ */}
       <section
-        className="relative flex min-h-[80vh] w-full flex-col overflow-hidden"
+        ref={coverRef}
+        className="relative flex h-[100svh] w-full flex-col overflow-hidden"
         style={{ background: project.heroBg }}
       >
         {(() => {
@@ -79,10 +96,13 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
         </div>
       </section>
 
-      {/* ============ META ============ */}
-      <section className="bg-background text-foreground">
+      {/* ============ 2. DETAILS ============ */}
+      <section
+        ref={detailsRef}
+        className="flex min-h-[100svh] flex-col justify-center overflow-hidden bg-background text-foreground"
+      >
         <div
-          className={`mx-auto grid max-w-[1400px] grid-cols-1 gap-y-8 px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,5vw,4rem)] md:gap-x-12 ${
+          className={`mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-y-8 px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,5vw,4rem)] md:gap-x-12 ${
             project.collaborators && project.collaborators.length > 0
               ? "md:grid-cols-[1fr_2fr]"
               : ""
@@ -100,7 +120,6 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
               ))}
             </div>
           ) : null}
-
 
           <div className="space-y-8">
             <div>
@@ -126,15 +145,20 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
           </div>
         </div>
 
-        <div className="mx-auto max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)]">
+        <div className="mx-auto w-full max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)]">
           <div className="h-px w-full bg-foreground/20" />
           <p className="py-[clamp(2rem,4vw,3rem)] font-sans text-sm leading-relaxed md:text-base">
             {project.description}
           </p>
         </div>
+      </section>
 
-        {/* Photo gallery — static main frame that cycles, with thumbnail strip below */}
-        <div className="mx-auto max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)] pb-[clamp(3rem,6vw,5rem)]">
+      {/* ============ 3. GALLERY ============ */}
+      <section
+        ref={galleryRef}
+        className="flex min-h-[100svh] flex-col justify-center overflow-hidden bg-background text-foreground"
+      >
+        <div className="mx-auto w-full max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,4vw,3rem)]">
           {/* Main static frame — adapts to active image orientation so the photo is fully visible */}
           <div
             className={`relative mx-auto w-full overflow-hidden bg-foreground/10 transition-all duration-500 ${
@@ -143,7 +167,7 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
                 : "aspect-[4/5]"
             }`}
             style={{
-              maxHeight: "85vh",
+              maxHeight: "68vh",
               maxWidth: activeImage?.aspect?.includes("2/3") ? "min(100%, 60ch)" : "100%",
             }}
           >
@@ -174,43 +198,43 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
 
           {/* Thumbnail carousel — only when there are additional images */}
           {galleryImages.length > 1 && (
-          <div className="relative mt-6 w-full">
-            <div
-              className="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            >
-              {galleryImages.map((img, i) => {
-                const isActive = i === activeIdx;
-                return (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setActiveIdx(i)}
-                    aria-label={`Show image ${i + 1}`}
-                    aria-pressed={isActive}
-                    className={`relative aspect-[4/5] w-20 shrink-0 snap-start overflow-hidden border-2 bg-foreground/10 transition-all duration-300 ${
-                      isActive
-                        ? "border-foreground opacity-100"
-                        : "border-transparent opacity-60 hover:opacity-100"
-                    }`}
-                  >
-                    <img
-                      src={img.src}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover"
-                    />
-                  </button>
-                );
-              })}
+            <div className="relative mt-6 w-full">
+              <div className="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {galleryImages.map((img, i) => {
+                  const isActive = i === activeIdx;
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setActiveIdx(i)}
+                      aria-label={`Show image ${i + 1}`}
+                      aria-pressed={isActive}
+                      className={`relative aspect-[4/5] w-20 shrink-0 snap-start overflow-hidden border-2 bg-foreground/10 transition-all duration-300 ${
+                        isActive
+                          ? "border-foreground opacity-100"
+                          : "border-transparent opacity-60 hover:opacity-100"
+                      }`}
+                    >
+                      <img
+                        src={img.src}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover"
+                      />
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
           )}
         </div>
       </section>
 
-      {/* ============ FOOTER ============ */}
-      <SiteFooter />
+      {/* ============ 4. FOOTER (snap managed by this page) ============ */}
+      <div ref={footerWrapRef}>
+        <SiteFooter snap={false} />
+      </div>
     </main>
   );
 }
