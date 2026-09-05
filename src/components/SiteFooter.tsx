@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
-export function SiteFooter() {
+export function SiteFooter({ snap = true }: { snap?: boolean }) {
   // Footer behaviour borrowed from the kimara build: the footer occupies its
   // own full-height "page". It stays hidden below the fold until the user
   // scrolls, then glides/snaps into place with the same 600ms ease-in-out
@@ -51,7 +51,7 @@ export function SiteFooter() {
   // to (or away from) its top edge; slow scrolls settle onto it.
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || !snap) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let isSnapping = false;
