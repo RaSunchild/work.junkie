@@ -143,7 +143,7 @@ export function SiteFooter({ snap = true }: { snap?: boolean }) {
       window.removeEventListener("touchstart", onUserInput);
       window.removeEventListener("touchmove", onUserInput);
     };
-  }, []);
+  }, [snap]);
 
   const eased = progress * progress * (3 - 2 * progress);
 
