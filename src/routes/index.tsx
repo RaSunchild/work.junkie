@@ -464,11 +464,6 @@ function Index() {
       }
     };
     const onScroll = () => {
-      const now = performance.now();
-      const dt = Math.max(1, now - lastScrollT);
-      velocity = (window.scrollY - lastScrollY) / dt;
-      lastScrollY = window.scrollY;
-      lastScrollT = now;
       if (!raf) raf = window.requestAnimationFrame(update);
       if (!isSnapping) scheduleSnap();
     };
