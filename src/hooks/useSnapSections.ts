@@ -48,6 +48,28 @@ export function useSnapSections(getStops: () => number[]) {
       snapRaf = window.requestAnimationFrame(step);
     };
 
+    /** Snap to the nearest stop whenever the scroll comes to rest mid-section
+     *  (keyboard, scrollbar drag, trackpad momentum tail). */
+    const settleToNearest = () => {
+      if (isSnapping) return;
+      const y = window.scrollY;
+      const stops = getStops();
+      if (stops.length < 2) return;
+      const pullRange = window.innerHeight;
+      let nearest: number | undefined;
+      for (const s of stops) {
+        const dist = s - y;
+        if (
+          Math.abs(dist) > 2 &&
+          Math.abs(dist) < pullRange &&
+          (nearest === undefined || Math.abs(dist) < Math.abs(nearest - y))
+        ) {
+          nearest = s;
+        }
+      }
+      if (nearest !== undefined) tweenTo(nearest);
+    };
+
     const gestureLock = () => performance.now() - lastGesture < 260;
 
     const onWheel = (e: WheelEvent) => {
