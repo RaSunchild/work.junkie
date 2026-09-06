@@ -48,6 +48,28 @@ export function useSnapSections(getStops: () => number[]) {
       snapRaf = window.requestAnimationFrame(step);
     };
 
+    /** Snap to the nearest stop whenever the scroll comes to rest mid-section
+     *  (keyboard, scrollbar drag, trackpad momentum tail). */
+    const settleToNearest = () => {
+      if (isSnapping) return;
+      const y = window.scrollY;
+      const stops = getStops();
+      if (stops.length < 2) return;
+      const pullRange = window.innerHeight;
+      let nearest: number | undefined;
+      for (const s of stops) {
+        const dist = s - y;
+        if (
+          Math.abs(dist) > 2 &&
+          Math.abs(dist) < pullRange &&
+          (nearest === undefined || Math.abs(dist) < Math.abs(nearest - y))
+        ) {
+          nearest = s;
+        }
+      }
+      if (nearest !== undefined) tweenTo(nearest);
+    };
+
     const gestureLock = () => performance.now() - lastGesture < 260;
 
     const onWheel = (e: WheelEvent) => {
@@ -74,24 +96,20 @@ export function useSnapSections(getStops: () => number[]) {
       window.clearTimeout(snapTimer);
       snapTimer = window.setTimeout(() => {
         if (isSnapping || gestureLock()) return;
-        const y = window.scrollY;
-        const stops = getStops();
-        if (stops.length < 2) return;
-        const pullRange = window.innerHeight * 0.4;
-        let nearest: number | undefined;
-        for (const s of stops) {
-          const dist = s - y;
-          if (
-            Math.abs(dist) > 2 &&
-            Math.abs(dist) < pullRange &&
-            (nearest === undefined ||
-              Math.abs(dist) < Math.abs(nearest - y))
-          ) {
-            nearest = s;
-          }
-        }
-        if (nearest !== undefined) tweenTo(nearest);
+        settleToNearest();
       }, 140);
+    };
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (
+        ["PageDown", "PageUp", "ArrowDown", "ArrowUp", "Home", "End", " "].includes(
+          e.key,
+        )
+      ) {
+        // Let the browser scroll, then snap once it settles.
+        window.clearTimeout(snapTimer);
+        snapTimer = window.setTimeout(settleToNearest, 200);
+      }
     };
 
     const onUserInput = () => {
@@ -101,6 +119,7 @@ export function useSnapSections(getStops: () => number[]) {
 
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("scroll", onScrollEnd, { passive: true });
+    window.addEventListener("keydown", onKeyDown);
     window.addEventListener("touchstart", onUserInput, { passive: true });
     window.addEventListener("touchmove", onUserInput, { passive: true });
     return () => {
@@ -108,6 +127,7 @@ export function useSnapSections(getStops: () => number[]) {
       window.clearTimeout(snapTimer);
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("scroll", onScrollEnd);
+      window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("touchstart", onUserInput);
       window.removeEventListener("touchmove", onUserInput);
     };
