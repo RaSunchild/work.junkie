@@ -119,6 +119,7 @@ export function useSnapSections(getStops: () => number[]) {
 
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("scroll", onScrollEnd, { passive: true });
+    window.addEventListener("keydown", onKeyDown);
     window.addEventListener("touchstart", onUserInput, { passive: true });
     window.addEventListener("touchmove", onUserInput, { passive: true });
     return () => {
@@ -126,6 +127,7 @@ export function useSnapSections(getStops: () => number[]) {
       window.clearTimeout(snapTimer);
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("scroll", onScrollEnd);
+      window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("touchstart", onUserInput);
       window.removeEventListener("touchmove", onUserInput);
     };
