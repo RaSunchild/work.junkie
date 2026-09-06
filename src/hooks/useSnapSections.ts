@@ -96,24 +96,20 @@ export function useSnapSections(getStops: () => number[]) {
       window.clearTimeout(snapTimer);
       snapTimer = window.setTimeout(() => {
         if (isSnapping || gestureLock()) return;
-        const y = window.scrollY;
-        const stops = getStops();
-        if (stops.length < 2) return;
-        const pullRange = window.innerHeight * 0.4;
-        let nearest: number | undefined;
-        for (const s of stops) {
-          const dist = s - y;
-          if (
-            Math.abs(dist) > 2 &&
-            Math.abs(dist) < pullRange &&
-            (nearest === undefined ||
-              Math.abs(dist) < Math.abs(nearest - y))
-          ) {
-            nearest = s;
-          }
-        }
-        if (nearest !== undefined) tweenTo(nearest);
+        settleToNearest();
       }, 140);
+    };
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (
+        ["PageDown", "PageUp", "ArrowDown", "ArrowUp", "Home", "End", " "].includes(
+          e.key,
+        )
+      ) {
+        // Let the browser scroll, then snap once it settles.
+        window.clearTimeout(snapTimer);
+        snapTimer = window.setTimeout(settleToNearest, 200);
+      }
     };
 
     const onUserInput = () => {
