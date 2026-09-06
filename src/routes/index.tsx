@@ -286,9 +286,6 @@ function Index() {
     let snapTimer = 0;
     let isSnapping = false;
     let snapRaf = 0;
-    let lastScrollY = window.scrollY;
-    let lastScrollT = performance.now();
-    let velocity = 0; // px/ms, signed
     const cancelSnap = () => {
       if (!isSnapping) return;
       isSnapping = false;
@@ -361,11 +358,10 @@ function Index() {
       const heroRect = el.getBoundingClientRect();
       if (heroRect.bottom > 0) return false;
       const vh = window.innerHeight;
-      // Don't fight a fast flick in either direction.
-      if (Math.abs(velocity) > 2.5) return false;
-      // Settle on whichever stop is nearest the top of the viewport,
-      // as long as it's within a comfortable pull range (60% of viewport).
-      const pullRange = vh * 0.6;
+      // Settle on whichever stop is nearest the top of the viewport —
+      // full-viewport pull range so flicks, scrollbar drags, and keyboard
+      // scrolls always come to rest flush on a section top.
+      const pullRange = vh;
       const y = window.scrollY;
       let best: number | null = null;
       let bestDist = Infinity;
@@ -468,11 +464,6 @@ function Index() {
       }
     };
     const onScroll = () => {
-      const now = performance.now();
-      const dt = Math.max(1, now - lastScrollT);
-      velocity = (window.scrollY - lastScrollY) / dt;
-      lastScrollY = window.scrollY;
-      lastScrollT = now;
       if (!raf) raf = window.requestAnimationFrame(update);
       if (!isSnapping) scheduleSnap();
     };
