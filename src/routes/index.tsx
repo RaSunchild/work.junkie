@@ -286,9 +286,6 @@ function Index() {
     let snapTimer = 0;
     let isSnapping = false;
     let snapRaf = 0;
-    let lastScrollY = window.scrollY;
-    let lastScrollT = performance.now();
-    let velocity = 0; // px/ms, signed
     const cancelSnap = () => {
       if (!isSnapping) return;
       isSnapping = false;
