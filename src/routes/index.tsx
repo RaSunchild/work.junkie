@@ -329,12 +329,14 @@ function Index() {
       const p = 1 - Math.max(0, Math.min(1, distanceLeft / fadeRange));
       setReleaseProgress(p);
     };
-    // Scroll stops: hero top, hero fully-released point, then each block top.
+    // Scroll stops: hero top, then each block top. One gesture glides
+    // straight from the hero into the first block (and back), matching the
+    // block-to-block transitions — no intermediate park at the hero's
+    // release point.
     const stops = (): number[] => {
       const rect = el.getBoundingClientRect();
       const heroTop = window.scrollY + rect.top;
-      const heroRelease = heroTop + el.offsetHeight - window.innerHeight;
-      const list = [heroTop, heroRelease];
+      const list = [heroTop];
       for (const node of blockRefs.current) {
         if (!node) continue;
         list.push(window.scrollY + node.getBoundingClientRect().top);
