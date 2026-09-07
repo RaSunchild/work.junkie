@@ -7,6 +7,7 @@ import { MenuButton, useMenu } from "@/components/MenuOverlay";
 import { NavPrompt } from "@/components/NavPrompt";
 import exposureCoverAsset from "@/assets/exposure-cover.webp.asset.json";
 import landfillCoverAsset from "@/assets/landfill-cover.webp.asset.json";
+import rootsCoverAsset from "@/assets/roots-cover.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -87,8 +88,9 @@ const blocks: Block[] = [
     kind: "description",
     theme: "dark",
     imageSide: "left",
-    aspect: "aspect-[16/9]",
+    aspect: "aspect-[3/4]",
     photoSlug: "roots",
+    image: rootsCoverAsset.url,
   },
   {
     title: "Cards",
