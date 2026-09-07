@@ -356,10 +356,11 @@ function Index() {
       return true;
     };
     const trySnapBlock = (): boolean => {
-      // Only consider blocks after hero has fully released.
+      // Only consider blocks once the hero no longer fills the viewport
+      // (its release point) — above that, trySnapHero owns settling.
       const heroRect = el.getBoundingClientRect();
-      if (heroRect.bottom > 0) return false;
       const vh = window.innerHeight;
+      if (heroRect.bottom > vh) return false;
       // Settle on whichever stop is nearest the top of the viewport —
       // full-viewport pull range so flicks, scrollbar drags, and keyboard
       // scrolls always come to rest flush on a section top.
