@@ -6,6 +6,7 @@ import { writingPieces, getExcerpt } from "@/data/writing";
 import { MenuButton, useMenu } from "@/components/MenuOverlay";
 import { NavPrompt } from "@/components/NavPrompt";
 import exposureCoverAsset from "@/assets/exposure-cover.webp.asset.json";
+import landfillCoverAsset from "@/assets/landfill-cover.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -78,7 +79,7 @@ const blocks: Block[] = [
     imageSide: "right",
     aspect: "aspect-[3/4]",
     photoSlug: "landfill-to-catwalk",
-    
+    image: landfillCoverAsset.url,
   },
   {
     title: "Roots",
