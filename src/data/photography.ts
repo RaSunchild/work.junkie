@@ -28,6 +28,7 @@ import jjII from "@/assets/portraits-with-strangers/jj-ii.webp";
 import jjIII from "@/assets/portraits-with-strangers/jj-iii.webp";
 import exposureCoverAsset from "@/assets/exposure-cover.webp.asset.json";
 import landfillCoverAsset from "@/assets/landfill-cover.webp.asset.json";
+import rootsCoverAsset from "@/assets/roots-cover.webp.asset.json";
 
 export const photoProjects: PhotoProject[] = [
   {
@@ -95,11 +96,12 @@ export const photoProjects: PhotoProject[] = [
     location: "KAMPALA",
     date: "COMPLETED.",
     description: "Details on the photography series.",
+    featuredImage: 0,
     images: [
+      { aspect: "aspect-[2/3]", src: rootsCoverAsset.url, caption: "Roots" },
       { aspect: "aspect-[3/2]", src: null },
       { aspect: "aspect-[2/3]", src: null },
       { aspect: "aspect-[3/2]", src: null },
-      { aspect: "aspect-[2/3]", src: null },
     ],
   },
 ];
