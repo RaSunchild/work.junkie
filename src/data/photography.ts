@@ -27,6 +27,7 @@ import jjI from "@/assets/portraits-with-strangers/jj-i.webp";
 import jjII from "@/assets/portraits-with-strangers/jj-ii.webp";
 import jjIII from "@/assets/portraits-with-strangers/jj-iii.webp";
 import exposureCoverAsset from "@/assets/exposure-cover.webp.asset.json";
+import landfillCoverAsset from "@/assets/landfill-cover.webp.asset.json";
 
 export const photoProjects: PhotoProject[] = [
   {
@@ -76,7 +77,7 @@ export const photoProjects: PhotoProject[] = [
     date: "2024.",
     description: "Held on July, 21 2024, the 4th edition of the Shebang Fashion Show saw a garbage dump in Kampala's Namuwongo-Kasanvu Slum transformed into an open air runway. The show was organised by Shakah Farid Lwanya and the Wellbeing Foundation under the theme \"Reclaiming Waste to power fashion\" and saw five collections crafted entirely from recycled waste by Musema Culture, Bobbin Case, Quill Clothing, Trevor Kaye, and Njola Impressions. Abandoning fancy venues, it placed sustainabile design directly in the local community.",
     images: [
-      { aspect: "aspect-[3/2]", src: null, caption: "Shebang Fashion Show" },
+      { aspect: "aspect-[3/2]", src: landfillCoverAsset.url, caption: "The lineup" },
       { aspect: "aspect-[3/2]", src: null, caption: "Backs to the sun" },
       { aspect: "aspect-[3/2]", src: null, caption: "The lineup" },
       { aspect: "aspect-[3/2]", src: null, caption: "Crossing paths" },
