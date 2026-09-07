@@ -329,12 +329,14 @@ function Index() {
       const p = 1 - Math.max(0, Math.min(1, distanceLeft / fadeRange));
       setReleaseProgress(p);
     };
-    // Scroll stops: hero top, hero fully-released point, then each block top.
+    // Scroll stops: hero top, then each block top. One gesture glides
+    // straight from the hero into the first block (and back), matching the
+    // block-to-block transitions — no intermediate park at the hero's
+    // release point.
     const stops = (): number[] => {
       const rect = el.getBoundingClientRect();
       const heroTop = window.scrollY + rect.top;
-      const heroRelease = heroTop + el.offsetHeight - window.innerHeight;
-      const list = [heroTop, heroRelease];
+      const list = [heroTop];
       for (const node of blockRefs.current) {
         if (!node) continue;
         list.push(window.scrollY + node.getBoundingClientRect().top);
@@ -354,10 +356,11 @@ function Index() {
       return true;
     };
     const trySnapBlock = (): boolean => {
-      // Only consider blocks after hero has fully released.
+      // Only consider blocks once the hero no longer fills the viewport
+      // (its release point) — above that, trySnapHero owns settling.
       const heroRect = el.getBoundingClientRect();
-      if (heroRect.bottom > 0) return false;
       const vh = window.innerHeight;
+      if (heroRect.bottom > vh) return false;
       // Settle on whichever stop is nearest the top of the viewport —
       // full-viewport pull range so flicks, scrollbar drags, and keyboard
       // scrolls always come to rest flush on a section top.
