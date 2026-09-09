@@ -249,9 +249,15 @@ export function ProjectLayout({ project }: { project: Project }) {
           )}
         </div>
 
-        {/* Auto-cycling main frame + thumbnails, confined to the right column */}
+      </section>
+
+      {/* ============ 3. GALLERY ============ */}
+      <section
+        ref={galleryRef}
+        className="flex min-h-[100svh] flex-col justify-center overflow-hidden bg-background text-foreground"
+      >
         {galleryImages.length > 0 && (
-          <div className="mx-auto max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)] pb-[clamp(3rem,6vw,5rem)]">
+          <div className="mx-auto w-full max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,4vw,3rem)]">
             <div
               onClick={() => setPaused((p) => !p)}
               role="button"
