@@ -55,6 +55,54 @@ export function ProjectLayout({ project }: { project: Project }) {
       }
     });
   }, [safeIdx, paused]);
+  // Full-viewport snap stops: cover → details → gallery → footer.
+  const coverRef = useRef<HTMLElement | null>(null);
+  const detailsRef = useRef<HTMLElement | null>(null);
+  const galleryRef = useRef<HTMLElement | null>(null);
+  const footerWrapRef = useRef<HTMLDivElement | null>(null);
+  const getStops = useCallback(
+    () =>
+      [coverRef.current, detailsRef.current, galleryRef.current, footerWrapRef.current]
+        .map((el) => sectionTop(el))
+        .filter((n): n is number => n !== null),
+    [],
+  );
+  useSnapSections(getStops);
+
+  // One-time gentle auto-glide from the cover to the details section after 4.6s.
+  // Cancelled if the visitor interacts first; never repeats, so scrolling back stays put.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let cancelled = false;
+    const remove = () => {
+      window.removeEventListener("wheel", cancel);
+      window.removeEventListener("touchstart", cancel);
+      window.removeEventListener("keydown", cancel);
+      window.removeEventListener("pointerdown", cancel);
+    };
+    function cancel() {
+      cancelled = true;
+      window.clearTimeout(timer);
+      remove();
+    }
+    const timer = window.setTimeout(() => {
+      remove();
+      if (cancelled) return;
+      const target = sectionTop(detailsRef.current);
+      if (target === null) return;
+      if (window.scrollY > 8) return;
+      window.scrollTo({ top: target, behavior: "smooth" });
+    }, 4600);
+    window.addEventListener("wheel", cancel, { passive: true });
+    window.addEventListener("touchstart", cancel, { passive: true });
+    window.addEventListener("keydown", cancel);
+    window.addEventListener("pointerdown", cancel);
+    return () => {
+      window.clearTimeout(timer);
+      remove();
+    };
+  }, [project.slug]);
+
   return (
     <main
       className="w-full bg-background text-foreground"
