@@ -227,7 +227,7 @@ export function ProjectLayout({ project }: { project: Project }) {
           </div>
         </div>
 
-        <div className="mx-auto max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)]">
+        <div className="mx-auto w-full max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)]">
           <div className="h-px w-full bg-foreground/20" />
           <p className="whitespace-pre-line py-[clamp(2rem,4vw,3rem)] font-sans text-sm leading-relaxed md:text-base">
             {project.description}
