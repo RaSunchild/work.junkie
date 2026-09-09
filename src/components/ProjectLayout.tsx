@@ -328,8 +328,10 @@ export function ProjectLayout({ project }: { project: Project }) {
         )}
       </section>
 
-      {/* ============ FOOTER ============ */}
-      <SiteFooter />
+      {/* ============ 4. FOOTER (snap managed by this page) ============ */}
+      <div ref={footerWrapRef}>
+        <SiteFooter snap={false} />
+      </div>
     </main>
   );
 }
