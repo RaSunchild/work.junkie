@@ -87,7 +87,7 @@ function ArchivePage() {
           Archive
         </h1>
         <p className="mt-3 max-w-md font-sans text-[10px] uppercase tracking-[0.25em] text-black/60">
-          TAP TITLE TO ACCESS.
+          TAP TITLES TO ACCESS.
         </p>
       </section>
 
