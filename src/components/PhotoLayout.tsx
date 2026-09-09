@@ -35,6 +35,40 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
   );
   useSnapSections(getStops);
 
+  // One-time gentle auto-glide from the cover to the details section after 4.6s.
+  // Cancelled if the visitor interacts first; never repeats, so scrolling back stays put.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let cancelled = false;
+    const cancel = () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+      remove();
+    };
+    const remove = () => {
+      window.removeEventListener("wheel", cancel);
+      window.removeEventListener("touchstart", cancel);
+      window.removeEventListener("keydown", cancel);
+      window.removeEventListener("pointerdown", cancel);
+    };
+    const timer = window.setTimeout(() => {
+      remove();
+      if (cancelled) return;
+      const target = sectionTop(detailsRef.current);
+      if (target === null) return;
+      if (window.scrollY > 8) return; // visitor already moved off the cover
+      window.scrollTo({ top: target, behavior: "smooth" });
+    }, 4600);
+    window.addEventListener("wheel", cancel, { passive: true });
+    window.addEventListener("touchstart", cancel, { passive: true });
+    window.addEventListener("keydown", cancel);
+    window.addEventListener("pointerdown", cancel);
+    return () => {
+      window.clearTimeout(timer);
+      remove();
+    };
+  }, [project.slug]);
+
   return (
     <main
       className="w-full bg-background text-foreground"
