@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useSnapSections, sectionTop } from "@/hooks/useSnapSections";
 import type * as React from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Volume2, VolumeX } from "lucide-react";
