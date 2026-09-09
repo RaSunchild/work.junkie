@@ -210,7 +210,7 @@ function PlaygroundPage() {
               Playground
             </h1>
             <p className="mt-3 max-w-md font-sans text-sm text-black/60">
-              Welcome to my domain:
+              Ideas come to life.
             </p>
           </div>
           <button
