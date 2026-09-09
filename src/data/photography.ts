@@ -59,7 +59,7 @@ export const photoProjects: PhotoProject[] = [
     location: "KAMPALA",
     date: "2026",
     featuredImage: 1,
-    description: "This project explores exposure in a dual-context; the technical and conceptual. The technical aspect of the project explores the manipulation of ISO, Shutter Speed, and Aperture and the conceptual, the act of revealing a subject, moment, or narrative to the viewer.",
+    description: "This project explores exposure in a dual context: the technical and the conceptual. The technical explores and fosters an understanding of the manipulation of ISO, shutter speed, and aperture in photography, and the conceptual explores the act of revealing a subject, moment, or narrative to the viewer.",
     images: [
       { aspect: "aspect-[3/2]", src: null, caption: "To be exposed" },
       { aspect: "aspect-[16/9]", src: exposureCoverAsset.url, caption: "A sea of matatus" },
