@@ -111,8 +111,7 @@ function ResumePage() {
           Resume
         </h1>
         <p className="mt-3 max-w-md font-sans text-sm text-black/60">
-          Selected fellowships, programs, and partnerships. Click a title to
-          open the original post or site.
+          A selection of fellowships, programs, and partnerships.
         </p>
         <a
           href="https://drive.google.com/drive/folders/1-BpiQ7JvLOotDlJZbGXMN86Fup9y6LIo?usp=drive_link"
