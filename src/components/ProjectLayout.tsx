@@ -116,9 +116,10 @@ export function ProjectLayout({ project }: { project: Project }) {
       }
     >
       <SwipeBackIndicator />
-      {/* ============ HERO ============ */}
+      {/* ============ 1. COVER ============ */}
       <section
-        className="relative flex min-h-[80vh] w-full flex-col overflow-hidden"
+        ref={coverRef}
+        className="relative flex h-[100svh] w-full flex-col overflow-hidden"
         style={{ background: project.heroBg }}
       >
         {heroImage?.src && (
