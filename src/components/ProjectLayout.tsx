@@ -268,7 +268,7 @@ export function ProjectLayout({ project }: { project: Project }) {
                   ? activeImage.aspect
                   : "aspect-[4/5]"
               }`}
-              style={{ maxWidth: "min(100%, 720px)", maxHeight: "85vh" }}
+              style={{ maxWidth: "min(100%, 720px)", maxHeight: "68vh" }}
             >
               {galleryImages.map((img, i) => (
                 <div
