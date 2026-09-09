@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "813aff98-2e34-41e0-99d2-9722d8e47658",
-  "project_id": "b823bf1a-b537-4c87-8a9e-57018032df42",
-  "url": "/__l5e/assets-v1/813aff98-2e34-41e0-99d2-9722d8e47658/roots-cover.webp",
-  "r2_key": "a/v1/b823bf1a-b537-4c87-8a9e-57018032df42/813aff98-2e34-41e0-99d2-9722d8e47658/roots-cover.webp",
-  "original_filename": "roots-cover.webp",
-  "size": 35180,
   "content_type": "image/webp",
-  "created_at": "2026-09-07T08:27:36Z"
+  "created_at": "2026-09-07T08:27:36Z",
+  "original_filename": "roots-cover.webp",
+  "project_id": "fbecea92-d54f-453a-8148-a20e868efd91",
+  "r2_key": "a/v1/fbecea92-d54f-453a-8148-a20e868efd91/813aff98-2e34-41e0-99d2-9722d8e47658/roots-cover.webp",
+  "size": 35180,
+  "url": "/__l5e/assets-v1/813aff98-2e34-41e0-99d2-9722d8e47658/roots-cover.webp",
+  "version": 1
 }
