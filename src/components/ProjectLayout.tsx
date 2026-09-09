@@ -181,10 +181,13 @@ export function ProjectLayout({ project }: { project: Project }) {
         </div>
       </section>
 
-      {/* ============ META ============ */}
-      <section className="bg-background text-foreground">
+      {/* ============ 2. CONTEXT AND DETAILS ============ */}
+      <section
+        ref={detailsRef}
+        className="flex min-h-[100svh] flex-col justify-center overflow-hidden bg-background text-foreground"
+      >
         <div
-          className={`mx-auto grid max-w-[1400px] grid-cols-1 gap-y-8 px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,5vw,4rem)] md:gap-x-12 ${
+          className={`mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-y-8 px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,5vw,4rem)] md:gap-x-12 ${
             project.contributors && project.contributors.length > 0
               ? "md:grid-cols-[1fr_2fr]"
               : ""
