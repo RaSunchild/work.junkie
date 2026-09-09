@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useSnapSections, sectionTop } from "@/hooks/useSnapSections";
 import type * as React from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Volume2, VolumeX } from "lucide-react";
@@ -55,6 +56,55 @@ export function ProjectLayout({ project }: { project: Project }) {
       }
     });
   }, [safeIdx, paused]);
+
+  // Full-viewport snap stops: cover → details → gallery → footer.
+  const coverRef = useRef<HTMLElement | null>(null);
+  const detailsRef = useRef<HTMLElement | null>(null);
+  const galleryRef = useRef<HTMLElement | null>(null);
+  const footerWrapRef = useRef<HTMLDivElement | null>(null);
+  const getStops = useCallback(
+    () =>
+      [coverRef.current, detailsRef.current, galleryRef.current, footerWrapRef.current]
+        .map((el) => sectionTop(el))
+        .filter((n): n is number => n !== null),
+    [],
+  );
+  useSnapSections(getStops);
+
+  // One-time gentle auto-glide from the cover to the details section after 4.6s.
+  // Cancelled if the visitor interacts first; never repeats, so scrolling back stays put.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let cancelled = false;
+    const remove = () => {
+      window.removeEventListener("wheel", cancel);
+      window.removeEventListener("touchstart", cancel);
+      window.removeEventListener("keydown", cancel);
+      window.removeEventListener("pointerdown", cancel);
+    };
+    function cancel() {
+      cancelled = true;
+      window.clearTimeout(timer);
+      remove();
+    }
+    const timer = window.setTimeout(() => {
+      remove();
+      if (cancelled) return;
+      const target = sectionTop(detailsRef.current);
+      if (target === null) return;
+      if (window.scrollY > 8) return;
+      window.scrollTo({ top: target, behavior: "smooth" });
+    }, 4600);
+    window.addEventListener("wheel", cancel, { passive: true });
+    window.addEventListener("touchstart", cancel, { passive: true });
+    window.addEventListener("keydown", cancel);
+    window.addEventListener("pointerdown", cancel);
+    return () => {
+      window.clearTimeout(timer);
+      remove();
+    };
+  }, [project.slug]);
+
   return (
     <main
       className="w-full bg-background text-foreground"
@@ -66,9 +116,10 @@ export function ProjectLayout({ project }: { project: Project }) {
       }
     >
       <SwipeBackIndicator />
-      {/* ============ HERO ============ */}
+      {/* ============ 1. COVER ============ */}
       <section
-        className="relative flex min-h-[80vh] w-full flex-col overflow-hidden"
+        ref={coverRef}
+        className="relative flex h-[100svh] w-full flex-col overflow-hidden"
         style={{ background: project.heroBg }}
       >
         {heroImage?.src && (
@@ -130,10 +181,13 @@ export function ProjectLayout({ project }: { project: Project }) {
         </div>
       </section>
 
-      {/* ============ META ============ */}
-      <section className="bg-background text-foreground">
+      {/* ============ 2. CONTEXT AND DETAILS ============ */}
+      <section
+        ref={detailsRef}
+        className="flex min-h-[100svh] flex-col justify-center overflow-hidden bg-background text-foreground"
+      >
         <div
-          className={`mx-auto grid max-w-[1400px] grid-cols-1 gap-y-8 px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,5vw,4rem)] md:gap-x-12 ${
+          className={`mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-y-8 px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,5vw,4rem)] md:gap-x-12 ${
             project.contributors && project.contributors.length > 0
               ? "md:grid-cols-[1fr_2fr]"
               : ""
@@ -173,7 +227,7 @@ export function ProjectLayout({ project }: { project: Project }) {
           </div>
         </div>
 
-        <div className="mx-auto max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)]">
+        <div className="mx-auto w-full max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)]">
           <div className="h-px w-full bg-foreground/20" />
           <p className="whitespace-pre-line py-[clamp(2rem,4vw,3rem)] font-sans text-sm leading-relaxed md:text-base">
             {project.description}
@@ -195,9 +249,15 @@ export function ProjectLayout({ project }: { project: Project }) {
           )}
         </div>
 
-        {/* Auto-cycling main frame + thumbnails, confined to the right column */}
+      </section>
+
+      {/* ============ 3. GALLERY ============ */}
+      <section
+        ref={galleryRef}
+        className="flex min-h-[100svh] flex-col justify-center overflow-hidden bg-background text-foreground"
+      >
         {galleryImages.length > 0 && (
-          <div className="mx-auto max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)] pb-[clamp(3rem,6vw,5rem)]">
+          <div className="mx-auto w-full max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,4vw,3rem)]">
             <div
               onClick={() => setPaused((p) => !p)}
               role="button"
@@ -208,7 +268,7 @@ export function ProjectLayout({ project }: { project: Project }) {
                   ? activeImage.aspect
                   : "aspect-[4/5]"
               }`}
-              style={{ maxWidth: "min(100%, 720px)", maxHeight: "85vh" }}
+              style={{ maxWidth: "min(100%, 720px)", maxHeight: "68vh" }}
             >
               {galleryImages.map((img, i) => (
                 <div
@@ -268,8 +328,10 @@ export function ProjectLayout({ project }: { project: Project }) {
         )}
       </section>
 
-      {/* ============ FOOTER ============ */}
-      <SiteFooter />
+      {/* ============ 4. FOOTER (snap managed by this page) ============ */}
+      <div ref={footerWrapRef}>
+        <SiteFooter snap={false} />
+      </div>
     </main>
   );
 }
