@@ -29,6 +29,10 @@ import jjIII from "@/assets/portraits-with-strangers/jj-iii.webp";
 import exposureCoverAsset from "@/assets/exposure-cover.webp.asset.json";
 import landfillCoverAsset from "@/assets/landfill-cover.webp.asset.json";
 import rootsCoverAsset from "@/assets/roots-cover.webp.asset.json";
+import allAtOnceAsset from "@/assets/exposure/All_At_Once.webp.asset.json";
+import catchingRaindropsAsset from "@/assets/exposure/Catching_Raindrops.webp.asset.json";
+import fencesAsset from "@/assets/exposure/Fences.webp.asset.json";
+import streetLightAsset from "@/assets/exposure/Street_light.webp.asset.json";
 
 export const photoProjects: PhotoProject[] = [
   {
