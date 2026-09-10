@@ -12,7 +12,6 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
   );
   const [activeIdxRaw, setActiveIdx] = useState(0);
   const activeIdx = Math.min(activeIdxRaw, Math.max(0, galleryImages.length - 1));
-  const activeImage = galleryImages[activeIdx];
   useEffect(() => {
     if (galleryImages.length <= 1) return;
     const id = setInterval(() => {
