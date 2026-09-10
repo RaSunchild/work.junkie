@@ -29,6 +29,10 @@ import jjIII from "@/assets/portraits-with-strangers/jj-iii.webp";
 import exposureCoverAsset from "@/assets/exposure-cover.webp.asset.json";
 import landfillCoverAsset from "@/assets/landfill-cover.webp.asset.json";
 import rootsCoverAsset from "@/assets/roots-cover.webp.asset.json";
+import allAtOnceAsset from "@/assets/exposure/All_At_Once.webp.asset.json";
+import catchingRaindropsAsset from "@/assets/exposure/Catching_Raindrops.webp.asset.json";
+import fencesAsset from "@/assets/exposure/Fences.webp.asset.json";
+import streetLightAsset from "@/assets/exposure/Street_light.webp.asset.json";
 
 export const photoProjects: PhotoProject[] = [
   {
@@ -58,13 +62,14 @@ export const photoProjects: PhotoProject[] = [
     series: "STREET PHOTOGRAPHY",
     location: "KAMPALA",
     date: "2026",
-    featuredImage: 1,
+    featuredImage: 0,
     description: "This project explores exposure in a dual context: the technical and the conceptual. The technical explores and fosters an understanding of the manipulation of ISO, shutter speed, and aperture in photography, and the conceptual explores the act of revealing a subject, moment, or narrative to the viewer.",
     images: [
-      { aspect: "aspect-[3/2]", src: null, caption: "To be exposed" },
       { aspect: "aspect-[16/9]", src: exposureCoverAsset.url, caption: "A sea of matatus" },
-      { aspect: "aspect-[3/2]", src: null, caption: "After hours" },
-      { aspect: "aspect-[2/3]", src: null },
+      { aspect: "aspect-[3/2]", src: allAtOnceAsset.url, caption: "All at once" },
+      { aspect: "aspect-[16/9]", src: catchingRaindropsAsset.url, caption: "Catching raindrops" },
+      { aspect: "aspect-[3/2]", src: fencesAsset.url, caption: "Fences" },
+      { aspect: "aspect-[2/3]", src: streetLightAsset.url, caption: "Street light" },
     ],
   },
   {
