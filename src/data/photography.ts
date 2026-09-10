@@ -76,6 +76,12 @@ export const photoProjects: PhotoProject[] = [
       { aspect: "aspect-[16/9]", src: catchingRaindropsAsset.url, caption: "Catching raindrops" },
       { aspect: "aspect-[3/2]", src: fencesAsset.url, caption: "Fences" },
       { aspect: "aspect-[2/3]", src: streetLightAsset.url, caption: "Street light" },
+      { aspect: "aspect-[2/3]", src: theInstantAsset.url, caption: "The instant" },
+      { aspect: "aspect-[16/9]", src: theInstantIIAsset.url, caption: "The instant II" },
+      { aspect: "aspect-[5/7]", src: theWelderIAsset.url, caption: "The welder I" },
+      { aspect: "aspect-[16/9]", src: theWelderIIAsset.url, caption: "The welder II" },
+      { aspect: "aspect-[2/3]", src: theWelderIIIAsset.url, caption: "The welder III" },
+      { aspect: "aspect-[7/5]", src: theWelderIVAsset.url, caption: "The welder IV" },
     ],
   },
   {
