@@ -33,6 +33,12 @@ import allAtOnceAsset from "@/assets/exposure/All_At_Once.webp.asset.json";
 import catchingRaindropsAsset from "@/assets/exposure/Catching_Raindrops.webp.asset.json";
 import fencesAsset from "@/assets/exposure/Fences.webp.asset.json";
 import streetLightAsset from "@/assets/exposure/Street_light.webp.asset.json";
+import theInstantAsset from "@/assets/exposure/THE_INSTANT.webp.asset.json";
+import theInstantIIAsset from "@/assets/exposure/THE_INSTANT_II.webp.asset.json";
+import theWelderIAsset from "@/assets/exposure/THE_WELDER_I.webp.asset.json";
+import theWelderIIAsset from "@/assets/exposure/THE_WELDER_II.webp.asset.json";
+import theWelderIIIAsset from "@/assets/exposure/THE_WELDER_III.webp.asset.json";
+import theWelderIVAsset from "@/assets/exposure/THE_WELDER_IV.webp.asset.json";
 
 export const photoProjects: PhotoProject[] = [
   {
