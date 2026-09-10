@@ -197,7 +197,7 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
             {galleryImages.map((img, i) => (
               <div
                 key={i}
-                className={`absolute inset-0 p-[clamp(1rem,3vw,2rem)] transition-opacity duration-700 ease-out ${
+                className={`absolute inset-0 p-2 transition-opacity duration-700 ease-out sm:p-[clamp(1rem,3vw,2rem)] ${
                   i === activeIdx ? "opacity-100" : "opacity-0"
                 }`}
                 aria-hidden={i !== activeIdx}
