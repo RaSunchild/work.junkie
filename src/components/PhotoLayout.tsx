@@ -193,14 +193,11 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
       >
         <div className="mx-auto w-full max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,4vw,3rem)]">
           {/* Main static frame — adapts to active image orientation so the photo is fully visible */}
-          <div
-            className="relative mx-auto aspect-[3/2] w-full overflow-hidden bg-foreground/10"
-            style={{ maxHeight: "68vh" }}
-          >
+          <div className="relative mx-auto aspect-[4/5] max-h-[74svh] w-full overflow-hidden bg-foreground/10 sm:aspect-[3/2] sm:max-h-[68vh]">
             {galleryImages.map((img, i) => (
               <div
                 key={i}
-                className={`absolute inset-0 p-[clamp(1rem,3vw,2rem)] transition-opacity duration-700 ease-out ${
+                className={`absolute inset-0 p-2 transition-opacity duration-700 ease-out sm:p-[clamp(1rem,3vw,2rem)] ${
                   i === activeIdx ? "opacity-100" : "opacity-0"
                 }`}
                 aria-hidden={i !== activeIdx}
