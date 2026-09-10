@@ -65,10 +65,11 @@ export const photoProjects: PhotoProject[] = [
     featuredImage: 1,
     description: "This project explores exposure in a dual context: the technical and the conceptual. The technical explores and fosters an understanding of the manipulation of ISO, shutter speed, and aperture in photography, and the conceptual explores the act of revealing a subject, moment, or narrative to the viewer.",
     images: [
-      { aspect: "aspect-[3/2]", src: null, caption: "To be exposed" },
       { aspect: "aspect-[16/9]", src: exposureCoverAsset.url, caption: "A sea of matatus" },
-      { aspect: "aspect-[3/2]", src: null, caption: "After hours" },
-      { aspect: "aspect-[2/3]", src: null },
+      { aspect: "aspect-[3/2]", src: allAtOnceAsset.url, caption: "All at once" },
+      { aspect: "aspect-[16/9]", src: catchingRaindropsAsset.url, caption: "Catching raindrops" },
+      { aspect: "aspect-[3/2]", src: fencesAsset.url, caption: "Fences" },
+      { aspect: "aspect-[2/3]", src: streetLightAsset.url, caption: "Street light" },
     ],
   },
   {
