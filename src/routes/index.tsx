@@ -650,7 +650,7 @@ function Index() {
                   }`}
                 >
                   <div
-                    className={`flex w-full items-center justify-center overflow-hidden h-[clamp(34svh,44svh,50svh)] md:h-[clamp(46svh,58svh,64svh)] ${
+                    className={`group flex w-full items-center justify-center overflow-hidden h-[clamp(34svh,44svh,50svh)] md:h-[clamp(46svh,58svh,64svh)] ${
                       b.image ? "" : `${b.aspect ?? "aspect-square"} ${isDark ? "bg-foreground/15" : "bg-background/15"}`
                     }`}
                   >
@@ -660,10 +660,11 @@ function Index() {
                         alt={b.title}
                         loading="lazy"
                         decoding="async"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover transition-transform duration-[700ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] will-change-transform group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                       />
                     )}
                   </div>
+
                 </div>
               )}
 
