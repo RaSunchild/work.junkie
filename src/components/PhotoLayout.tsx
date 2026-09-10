@@ -217,11 +217,6 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
             ))}
           </div>
 
-          {activeImage?.caption && (
-            <p className="mt-3 font-sans text-xs uppercase tracking-[0.2em] text-foreground/60">
-              {activeImage.caption}
-            </p>
-          )}
 
           {/* Thumbnail carousel — only when there are additional images */}
           {galleryImages.length > 1 && (
