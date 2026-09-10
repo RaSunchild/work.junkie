@@ -195,15 +195,8 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
         <div className="mx-auto w-full max-w-[1400px] px-[clamp(1.5rem,4vw,2.5rem)] py-[clamp(2rem,4vw,3rem)]">
           {/* Main static frame — adapts to active image orientation so the photo is fully visible */}
           <div
-            className={`relative mx-auto w-full overflow-hidden bg-foreground/10 transition-all duration-500 ${
-              activeImage?.aspect && activeImage.aspect !== "aspect-auto"
-                ? activeImage.aspect
-                : "aspect-[4/5]"
-            }`}
-            style={{
-              maxHeight: "68vh",
-              maxWidth: activeImage?.aspect?.includes("2/3") ? "min(100%, 60ch)" : "100%",
-            }}
+            className="relative mx-auto aspect-[3/2] w-full overflow-hidden bg-foreground/10"
+            style={{ maxHeight: "68vh" }}
           >
             {galleryImages.map((img, i) => (
               <div
