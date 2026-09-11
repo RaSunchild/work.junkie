@@ -39,6 +39,14 @@ import theWelderIAsset from "@/assets/exposure/THE_WELDER_I.webp.asset.json";
 import theWelderIIAsset from "@/assets/exposure/THE_WELDER_II.webp.asset.json";
 import theWelderIIIAsset from "@/assets/exposure/THE_WELDER_III.webp.asset.json";
 import theWelderIVAsset from "@/assets/exposure/THE_WELDER_IV.webp.asset.json";
+import lfDuo from "@/assets/landfill/UPPA.webp.asset.json";
+import lfLineup from "@/assets/landfill/UPPA-2.webp.asset.json";
+import lfBacks from "@/assets/landfill/UPPA-3.webp.asset.json";
+import lfCrew from "@/assets/landfill/UPPA-4.webp.asset.json";
+import lfCrewWide from "@/assets/landfill/UPPA-5.webp.asset.json";
+import lfWall from "@/assets/landfill/UPPA-6.webp.asset.json";
+import lfRed from "@/assets/landfill/UPPA-7.webp.asset.json";
+import lfStripes from "@/assets/landfill/UPPA-9.webp.asset.json";
 
 export const photoProjects: PhotoProject[] = [
   {
