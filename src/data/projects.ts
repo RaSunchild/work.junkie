@@ -5,7 +5,7 @@ import nbcAprilPick from "@/assets/nbc-kampala/april-pick.webp";
 import nbcAprilBuzzwords from "@/assets/nbc-kampala/april-buzzwords.webp";
 import nbcMarch26 from "@/assets/nbc-kampala/march-26-meetup.webp.asset.json";
 import nbcMarchDiscussion from "@/assets/nbc-kampala/march-discussion.webp.asset.json";
-import nbcClip from "@/assets/nbc-kampala/nbc-clip.mp4.asset.json";
+
 import veiledPoster from "@/assets/veiled/veiled.gif.asset.json";
 
 export type ProjectImage = {
@@ -129,7 +129,7 @@ export const projects: Project[] = [
       { aspect: "aspect-auto", src: nbcMarchDiscussion.url },
       { aspect: "aspect-auto", src: nbcAprilPick },
       { aspect: "aspect-auto", src: nbcAprilBuzzwords },
-      { aspect: "aspect-auto", src: nbcClip.url, kind: "video" },
+      
     ],
   },
 ];
