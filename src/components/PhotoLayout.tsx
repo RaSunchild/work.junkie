@@ -20,6 +20,24 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
     return () => clearInterval(id);
   }, [galleryImages.length, activeIdx]);
 
+  // Keep the active thumbnail visible in the scrollable strip.
+  const thumbStripRef = useRef<HTMLDivElement | null>(null);
+  const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  useEffect(() => {
+    const strip = thumbStripRef.current;
+    const thumb = thumbRefs.current[activeIdx];
+    if (!strip || !thumb) return;
+    const target =
+      thumb.offsetLeft - strip.clientWidth / 2 + thumb.clientWidth / 2;
+    const max = strip.scrollWidth - strip.clientWidth;
+    strip.scrollTo({
+      left: Math.max(0, Math.min(target, max)),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
+  }, [activeIdx]);
+
   // Full-viewport snap stops: cover → details → gallery → footer.
   const coverRef = useRef<HTMLElement | null>(null);
   const detailsRef = useRef<HTMLElement | null>(null);
@@ -216,18 +234,24 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
 
           {/* Thumbnail carousel — only when there are additional images */}
           {galleryImages.length > 1 && (
-            <div className="relative mt-6 w-full">
-              <div className="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="relative mt-6 -mx-[clamp(1.5rem,4vw,2.5rem)]">
+              <div
+                ref={thumbStripRef}
+                className="flex gap-3 overflow-x-auto overscroll-x-contain scroll-smooth snap-x snap-mandatory px-[clamp(1.5rem,4vw,2.5rem)] pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
                 {galleryImages.map((img, i) => {
                   const isActive = i === activeIdx;
                   return (
                     <button
                       key={i}
                       type="button"
+                      ref={(el) => {
+                        thumbRefs.current[i] = el;
+                      }}
                       onClick={() => setActiveIdx(i)}
                       aria-label={`Show image ${i + 1}`}
                       aria-pressed={isActive}
-                      className={`relative aspect-[4/5] w-20 shrink-0 snap-start overflow-hidden border-2 bg-foreground/10 transition-all duration-300 ${
+                      className={`relative aspect-[4/5] w-24 shrink-0 snap-center overflow-hidden border-2 bg-foreground/10 transition-all duration-300 sm:w-20 ${
                         isActive
                           ? "border-foreground opacity-100"
                           : "border-transparent opacity-60 hover:opacity-100"
@@ -246,6 +270,7 @@ export function PhotoLayout({ project }: { project: PhotoProject }) {
               </div>
             </div>
           )}
+
         </div>
       </section>
 
