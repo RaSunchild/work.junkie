@@ -31,6 +31,11 @@ type Entry = {
 
 const entries: Entry[] = [
   {
+    year: "AUG-SEPT, 2026",
+    scope: "32° East Art Centre Internship",
+    partner: "Newsletter.\nSocials Calendar.\nPhotography.",
+  },
+  {
     year: "JAN-MAY, 2026",
     scope: "DDQIC.Jim Leech Mastercard Fellowship",
     partner:
