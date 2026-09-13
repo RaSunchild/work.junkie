@@ -160,7 +160,7 @@ function ResumePage() {
                     href={e.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-baseline gap-2 font-sans text-base font-medium leading-snug hover:opacity-60 md:text-lg"
+                    className="group inline-flex items-baseline gap-2 font-sans text-base font-bold leading-snug hover:opacity-60 md:text-lg"
                   >
                     <span className="underline decoration-black/30 underline-offset-4 group-hover:decoration-black">
                       {e.scope}
@@ -168,7 +168,7 @@ function ResumePage() {
                     <span aria-hidden className="text-xs text-black/40">↗</span>
                   </a>
                 ) : (
-                  <div className="font-sans text-base font-semibold leading-snug md:text-lg">
+                  <div className="font-sans text-base font-bold leading-snug md:text-lg">
                     {e.scope}
                   </div>
                 )}
